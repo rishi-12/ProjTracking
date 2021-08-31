@@ -20,4 +20,4 @@ app.use(cors());
 app.use('/api/user',authRoute);
 app.use('/api/posts',postRoute);
 
-app.listen(3000,()=> console.log('server is running'));
+app.listen(8080,()=> console.log('server is running'));
