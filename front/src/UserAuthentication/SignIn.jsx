@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from "react-router-dom"; 
 import axios from "axios";
 function Copyright() {
   return (
@@ -25,6 +26,7 @@ function Copyright() {
     </Typography>
   );
 }
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
   const classes = useStyles();
+  const history = useHistory();
+
   function handleSignIn(event) {
     // console.log(users);
   
@@ -70,6 +74,8 @@ export default function SignIn(props) {
       //     console.log(resp);
       //   });
     });
+
+    history.push(`/dashboard`);
   
   }
 
