@@ -3,10 +3,12 @@ import './App.css';
 import Nav from "./Nav";
 import About from "./About";
 // import Shop from "./Shop";
-import Auth from "./UserAuthentication/Auth";
+import SignIn from "./UserAuthentication/SignIn";
+import SignUp from "./UserAuthentication/SignUp";
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 // import Login from "./UserAuthentication/Login";
-import {LogInProvider} from './LoginContext';
+// import {LogInProvider} from './LoginContext';
+
 
 function App() {
 
@@ -14,13 +16,15 @@ function App() {
 
 
   return (
-    (!isLoggedIn) ? <Auth setLog={setLogin} /> :
+    // (!isLoggedIn) ? <SignIn setLogin={setLogin} /> :
     <div>
     <Router>
       <div >
-        <Nav />
+        
         <Switch>
-        <Route path='/' exact component={Home} />
+        <Route path='/' exact component={SignIn} />
+        <Route path='/SignUp' exact component={SignUp} />
+        <Route path='/home' exact component={Home} />
         <Route path='/about' component={About} />
         {/* <Route path='/shop' component={Shop} /> */}
         </Switch>
