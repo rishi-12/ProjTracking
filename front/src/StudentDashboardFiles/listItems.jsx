@@ -13,18 +13,24 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import {Link} from 'react-router-dom'
+
+export function handle_projectclick(){
+  window.open("/projects");
+}
+
 
 export const mainListItems = (
   <div>
 
-    <ListItem button>
+    <ListItem button component={Link} to="/dashboard">
       <ListItemIcon>
         <HomeIcon />
       </ListItemIcon>
       <ListItemText primary="Home" />
     </ListItem>
 
-    <ListItem button>
+    <ListItem button component={Link} to="/projects">
       <ListItemIcon>
         <ListAltIcon />
       </ListItemIcon>
@@ -44,30 +50,6 @@ export const mainListItems = (
         <AccountCircleIcon/>
       </ListItemIcon>
       <ListItemText primary="Profile" />
-    </ListItem>
-  </div>
-);
-
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
     </ListItem>
   </div>
 );

@@ -19,7 +19,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 // import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -162,11 +162,6 @@ export default function Dashboard() {
             Project Tracking DashBoard
           </Typography>
 
-          {/* <IconButton color="inherit">
-            <Badge badgeContent={5} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton> */}
         <Button component={Link} href={"/"} variant="contained" color="secondary" style={logout_style}>Logout</Button>
           
 
@@ -197,37 +192,12 @@ export default function Dashboard() {
 
 
       <main className={classes.content}>
+
         <div className={classes.appBarSpacer} />
-        {/* <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}> */}
-
-            {/* Chart */}
-            {/* <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid> */}
-
-            {/* Recent Deposits */}
-            {/* <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid> */}
             <div align="center"><h1 style={{font:'bold'}}>Welcome !!</h1>
             <img style={divstyle} src="https://d38cf3wt06n6q6.cloudfront.net/tyasuitefront/webgpcs/images/project-tracking-software.png"></img>
-            </div>
-            {/* Recent Orders */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
-          </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container> */}
+         </div>
+
       </main>
 
 

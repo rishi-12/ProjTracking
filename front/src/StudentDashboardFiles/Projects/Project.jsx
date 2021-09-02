@@ -19,13 +19,12 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems } from './listItems';
+import { mainListItems } from '../listItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
-import Orders from './Orders';
-import ProjCard from "./Projects/ProjCard";
+// import ProjCard from "./Projects/ProjCard";
 // import Card from '@material-ui/core/Card';
-import PieChart from './Projects/PieChart';
+import PieChart from './PieChart';
 
 function Copyright() {
   return (
@@ -132,7 +131,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProjectList() {
+export default function Project() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -143,9 +142,7 @@ export default function ProjectList() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  const projs=[{id:'1r3fwac',name:"B.Tech Project Tracking Dashboard",faculty:"Arunkumar C",teamsize: 5},{id:'1r3saa',name:"Alumuni Portal",faculty:"Pratilotamai M",teamsize: 4},{id:'23gvrew',name:"Course Website",faculty:"Venkataraman D",teamsize: 6},{id:'32efwewc',name:"Student Profile",faculty:"Gowtham R",teamsize: 5},{id:'45rgav',name:"Workshop Management",faculty:"Senthilkumar M",teamsize: 4}];
-
-
+  
   return (
 
     // Top bar
@@ -204,14 +201,8 @@ export default function ProjectList() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2} >
-          {projs.map((proj)=>(
-          <Grid item xs={3}>
-              <ProjCard id= {proj.id} name={proj.name} faculty={proj.faculty} teamsize={proj.teamsize} />
-              </Grid> 
-            ))}
-          </Grid>           
-          {/* <PieChart /> */}
+            {/* <h1>{props.name}</h1>        */}
+          <PieChart />
         </Container>
         
         
