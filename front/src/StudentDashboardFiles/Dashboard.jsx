@@ -1,8 +1,4 @@
 import React from 'react';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
-
 
 const drawerWidth = 240;
 

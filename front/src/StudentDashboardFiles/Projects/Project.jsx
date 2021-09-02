@@ -26,7 +26,7 @@ import { mainListItems } from '../listItems';
 // import Card from '@material-ui/core/Card';
 import PieChart from './PieChart';
 import { useParams } from 'react-router-dom';
-
+import TaskTable from './TaskTable'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -35,22 +35,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const projs=[{id:'1r3fwac',name:"B.Tech Project Tracking Dashboard",faculty:"Arunkumar C",teamsize: 5},{id:'1r3saa',name:"Alumuni Portal",faculty:"Pratilotamai M",teamsize: 4},{id:'23gvrew',name:"Course Website",faculty:"Venkataraman D",teamsize: 6},{id:'32efwewc',name:"Student Profile",faculty:"Gowtham R",teamsize: 5},{id:'45rgav',name:"Workshop Management",faculty:"Senthilkumar M",teamsize: 4}];
+
+const div_style = {
+  marginleft: '40%',
+}
 
 export default function Project() {
   const classes = useStyles();
-
   const {projectId}=useParams();
   console.log(projectId);
-  
-
+  const result = projs.filter(id => id.id===projectId);
+  console.log(result);
 
 return(
         <Container maxWidth="lg" className={classes.container}>
             {/* <h1>{props.name}</h1>        */}
+          <div >
+            <h1 style={div_style}>{result[0].name}</h1>
+            <h3>{result[0].faculty}</h3>
+          </div>
           <PieChart />
+          <br></br>
+          <TaskTable/>
         </Container>
-        
-        
-
   );
 }

@@ -9,6 +9,14 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 
 
+const chart_style = {
+  height: '20%',
+  width : '40%',
+  marginLeft: '20%',
+  marginTop: '0%',
+};
+
+
 export default function PieChart(props) {
   const chartData = [
     { status: 'To Do', tasks: 8 },
@@ -18,8 +26,8 @@ export default function PieChart(props) {
     // const { data: chartData } = this.state;
 
     return (
-      <Paper>
-        <Chart
+      <Paper style={chart_style}>
+        <Chart 
           data={chartData}
         >
           <PieSeries
