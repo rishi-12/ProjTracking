@@ -24,7 +24,8 @@ import { mainListItems, secondaryListItems } from './listItems';
 // import Deposits from './Deposits';
 import Orders from './Orders';
 import ProjCard from "./Projects/ProjCard";
-// import Card from '@material-ui/core/Card'
+// import Card from '@material-ui/core/Card';
+import PieChart from './Projects/PieChart';
 
 function Copyright() {
   return (
@@ -207,7 +208,7 @@ export default function ProjectList() {
           {projs.map((proj)=>(<Grid item xs={3}><ProjCard name={proj.name} faculty={proj.faculty} teamsize={proj.teamsize} /></Grid> ))}
           </Grid>
            
-          
+          {/* <PieChart /> */}
         </Container>
         
         
