@@ -30,7 +30,7 @@ function App() {
         <Route path='/home' exact component={Home} />
         <Route path='/dashboard'  exact component={()=>(<DashboardSkel name="dashboard"/>)} />
         <Route path='/projects' exact component={()=>(<DashboardSkel name="projectlist"/>)} />
-        <Route path='/projects/:projectId' exact component={Project} />
+        <Route path='/projects/:projectId' exact component={()=>(<DashboardSkel name="project"/>)} />
         <Route path='/about' component={About} />
         {/* <Route path='/shop' component={Shop} /> */}
         </Switch>

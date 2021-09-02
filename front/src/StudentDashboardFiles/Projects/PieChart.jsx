@@ -4,6 +4,7 @@ import {
   Chart,
   PieSeries,
   Title,
+  Legend
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 
@@ -24,7 +25,9 @@ export default function PieChart(props) {
           <PieSeries
             valueField="tasks"
             argumentField="status"
+            // innerRadius={0.6}
           />
+          <Legend/>
           <Title
             text="Progress Report"
           />

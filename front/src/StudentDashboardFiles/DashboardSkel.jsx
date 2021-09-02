@@ -25,6 +25,7 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import Dashboard from './Dashboard';
 import ProjectList from './ProjectList';
+import Project from './Projects/Project';
 // import { ProgressPlugin } from 'webpack';
 function Copyright() {
   return (
@@ -198,7 +199,7 @@ export default function DashboardSkel(props) {
             
             {props.name==="dashboard" && <Dashboard /> }
             {props.name==="projectlist" && <ProjectList /> }
-
+            {props.name==="project" && <Project /> }
       </main>
 
 
