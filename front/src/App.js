@@ -9,6 +9,7 @@ import DashboardSkel from "./StudentDashboardFiles/DashboardSkel";
 import ProjectList from "./StudentDashboardFiles/ProjectList";
 import Project from "./StudentDashboardFiles/Projects/Project";
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
+import Form from "./StudentDashboardFiles/Form.jsx";
 // import Login from "./UserAuthentication/Login";
 // import {LogInProvider} from './LoginContext';
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/' exact component={SignIn} />
         <Route path='/SignUp' exact component={SignUp} />
         <Route path='/home' exact component={Home} />
+        <Route path='/addproject' exact component={Form} />
         <Route path='/dashboard'  exact component={()=>(<DashboardSkel name="dashboard"/>)} />
         <Route path='/projects' exact component={()=>(<DashboardSkel name="projectlist"/>)} />
         <Route path='/projects/:projectId' exact component={()=>(<DashboardSkel name="project"/>)} />
