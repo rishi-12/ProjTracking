@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import FormControlLabelPlacement from './FormControlLabelPlacement';
 
 const useStyles = makeStyles({
   table: {
@@ -33,17 +34,17 @@ export default function AcccessibleTable() {
         {/* <caption>A basic table example with a caption</caption> */}
         <TableHead>
           <TableRow>
-            <TableCell>Task</TableCell>
-            <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Status</TableCell>
+            <TableCell align="center">Task</TableCell>
+            <TableCell align="center">Description</TableCell>
+            <TableCell align="center">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.task}>
-              <TableCell component="th" scope="row">{row.task}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
+              <TableCell component="th" align="center" scope="row">{row.task}</TableCell>
+              <TableCell align="center">{row.description}</TableCell>
+              <TableCell align="center"><FormControlLabelPlacement /></TableCell>
             </TableRow>
           ))}
         </TableBody>
