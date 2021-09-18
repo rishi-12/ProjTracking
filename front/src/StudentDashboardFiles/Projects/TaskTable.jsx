@@ -8,7 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import FormControlLabelPlacement from './FormControlLabelPlacement';
-
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -37,6 +38,7 @@ export default function AcccessibleTable() {
             <TableCell align="center">Task</TableCell>
             <TableCell align="center">Description</TableCell>
             <TableCell align="center">Status</TableCell>
+            <TableCell align="center"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -45,6 +47,13 @@ export default function AcccessibleTable() {
               <TableCell component="th" align="center" scope="row">{row.task}</TableCell>
               <TableCell align="center">{row.description}</TableCell>
               <TableCell align="center"><FormControlLabelPlacement /></TableCell>
+              <TableCell align="center"><Button
+                                          variant="contained"
+                                          color="secondary"
+                                          className={classes.button}
+                                          startIcon={<DeleteIcon />}
+                                        ></Button>
+                                    </TableCell>
             </TableRow>
           ))}
         </TableBody>
