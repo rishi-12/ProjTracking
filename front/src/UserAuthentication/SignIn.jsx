@@ -13,6 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom"; 
+import {useState} from "react";
+// import Alert from '@mui/material/Alert';
+import Alert from '@material-ui/lab/Alert';
 import axios from "axios";
 function Copyright() {
   return (
@@ -56,7 +59,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props) {
   const classes = useStyles();
   const history = useHistory();
-
+  const [errorFlag,setFlag]=useState(false);
+  const [errorMsg,setMsg]=useState("")
   function handleSignIn(event) {
     // console.log(users);
   
@@ -67,12 +71,19 @@ export default function SignIn(props) {
       email: event.target.email.value,
       password: event.target.password.value
     };
-    console.log(user1);
+    // console.log(user1);
   
     axios.post("http://localhost:8080/api/user/login", user1).then((response) => {
-      const header = { "auth-token": response.data };
-      console.log(header);
-      props.setLog(true);
+      console.log(response.data); 
+      //check condition then if error then do this
+      setFlag(true);
+      setMsg(response.data) ;
+      
+      console.log(123);
+    // const header = { "auth-token": response.data };
+      
+    //   console.log(header);
+    //   props.setLog(true);
       // axios
       //   .get("http://localhost:8080/api/posts", { headers: header })
       //   .then((resp) => {
@@ -80,7 +91,7 @@ export default function SignIn(props) {
       //   });
     });
 
-    history.push(`/dashboard`);
+    // history.push(`/dashboard`);
   
   }
 
@@ -122,6 +133,8 @@ export default function SignIn(props) {
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
         />
+        {errorFlag && <Alert severity="error">{errorMsg}</Alert> }
+        {/* <Alert severity="error">This is an error alert — check it out!</Alert> */}
         <Button
           type="submit"
           fullWidth

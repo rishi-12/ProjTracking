@@ -50,16 +50,16 @@ router.post('/login',async (req,res)=>{
     const {error} =loginValidation(req.body);
     console.log(error);
     // res.send(error.details[0].message);
-    if(error!=undefined) return res.status(400).send(error.details[0].message);
+    if(error!=undefined) return res.send(error.details[0].message);
 
     //Checking if email exist or not
     const user= await User.findOne({email: req.body.email});
     // console.log(emailExist);
-    if(!user) return res.status(400).send('Email doesnt exists');
+    if(!user) return res.send('Email doesnt exists');
 
     //Password is correct
     const validPass=await bcrypt.compare(req.body.password,user.password);
-    if(!validPass) return res.status(400).send('Invalid Password');
+    if(!validPass) return res.send('Invalid Password');
 
     //Create and Assign a token
     const token= jwt.sign({_id:user._id},process.env.TOKEN_SECRET);
