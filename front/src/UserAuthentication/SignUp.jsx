@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import axios from "axios";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -48,7 +48,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  function handleRegister(event) {
+    // console.log(users);
+  
+    event.preventDefault();
+    console.log(event.target.email.value);
+    console.log(event.target)
+    const user1 = {
+      name: event.target.firstName.value+" "+event.target.lastName.value,
+      email: event.target.email.value,
+      password: event.target.password.value
+    };
+    console.log(user1);
+  
+    axios.post("http://localhost:8080/api/user/register", user1).then((response) => {
+      console.log(response); 
+      console.log(response.data);
+      //check condition then if error then do this
+      // setFlag(true);
+      // setMsg(response.data) ;
+      
+      console.log(123);
 
+    });
+
+    // history.push(`/dashboard`);
+  
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,7 +85,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleRegister} className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
