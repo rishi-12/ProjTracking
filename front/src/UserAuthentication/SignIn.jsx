@@ -97,7 +97,8 @@ export default function SignIn(props) {
       console.log(stat);
       if(stat===200){
         // console.log("yes")
-          history.push(`/dashboard`); 
+        console.log(response.data);
+        history.push(`/dashboard`); //send response.data to dashboard
         // axios
       //   .get("http://localhost:8080/api/posts", { headers: header })
       //   .then((resp) => {

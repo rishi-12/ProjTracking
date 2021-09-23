@@ -27,6 +27,7 @@ import Dashboard from './Dashboard';
 import ProjectList from './ProjectList';
 import Project from './Projects/Project';
 // import { ProgressPlugin } from 'webpack';
+import axios from "axios";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -135,6 +136,7 @@ const useStyles = makeStyles((theme) => ({
 export default function DashboardSkel(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [name, setName] = React.useState("");
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -142,6 +144,15 @@ export default function DashboardSkel(props) {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  //inside here change token value
+  const header = { "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTI2NjY2NjhkZWI3ZDY0MjIzZWM3OTMiLCJpYXQiOjE2MzIzODAxMDZ9.et30sN2sy3RNk6sHRJaMOpGtv_3_7kiddvqlSvkd0eA" }; //here change
+  axios
+    .get("http://localhost:8080/api/posts", { headers: header })
+    .then((resp) => {
+      console.log(resp.data);
+      setName(resp.data.name);
+    });
+
 
   return (
 
@@ -197,7 +208,7 @@ export default function DashboardSkel(props) {
 
         <div className={classes.appBarSpacer} />
             
-            {props.name==="dashboard" && <Dashboard /> }
+            {props.name==="dashboard" && <Dashboard name={name} /> }
             {props.name==="projectlist" && <ProjectList /> }
             {props.name==="project" && <Project /> }
       </main>

@@ -10,10 +10,10 @@ const divstyle = {
 
 
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   return (
 
-        <div align="center"><h1 style={{font:'bold'}}>Welcome !!</h1>
+        <div align="center"><h1 style={{font:'bold'}}>Welcome {props.name} !!</h1>
             <img style={divstyle} src="https://d38cf3wt06n6q6.cloudfront.net/tyasuitefront/webgpcs/images/project-tracking-software.png"></img>
          </div>
 
