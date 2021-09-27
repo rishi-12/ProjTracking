@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -28,6 +28,7 @@ import ProjectList from './ProjectList';
 import Project from './Projects/Project';
 // import { ProgressPlugin } from 'webpack';
 import axios from "axios";
+import {UserContext} from '../UserContext';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -145,7 +146,9 @@ export default function DashboardSkel(props) {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   //inside here change token value
-  const header = { "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTI2NjY2NjhkZWI3ZDY0MjIzZWM3OTMiLCJpYXQiOjE2MzIzODAxMDZ9.et30sN2sy3RNk6sHRJaMOpGtv_3_7kiddvqlSvkd0eA" }; //here change
+  const [userId,setUserId]= useContext(UserContext);
+  console.log(userId);
+  const header = { "auth-token": userId }; //here change
   axios
     .get("http://localhost:8080/api/posts", { headers: header })
     .then((resp) => {

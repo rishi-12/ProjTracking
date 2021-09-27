@@ -12,7 +12,7 @@ import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import Form from "./StudentDashboardFiles/Form.jsx";
 // import Login from "./UserAuthentication/Login";
 // import {LogInProvider} from './LoginContext';
-
+import {UserProvider} from './UserContext';
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
 
   return (
     // (!isLoggedIn) ? <SignIn setLogin={setLogin} /> :
+    <UserProvider>
     <div>
     <Router>
       <div >
@@ -39,6 +40,7 @@ function App() {
       </div>
     </Router>
     </div>
+    </UserProvider>
   );
 }
 

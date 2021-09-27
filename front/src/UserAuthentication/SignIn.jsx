@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,9 +14,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom"; 
 import {useState} from "react";
+// import { useContext } from 'react';
 // import Alert from '@mui/material/Alert';
 import Alert from '@material-ui/lab/Alert';
 import axios from "axios";
+
+import {UserContext} from '../UserContext';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -60,7 +63,10 @@ export default function SignIn(props) {
   const classes = useStyles();
   const history = useHistory();
   const [errorFlag,setFlag]=useState(false);
-  const [errorMsg,setMsg]=useState("")
+  const [errorMsg,setMsg]=useState("");
+  const [userId,setUserId] = useContext(UserContext);
+  console.log("hello");
+  console.log(userId);
   function handleSignIn(event) {
     // console.log(users);
   
@@ -98,6 +104,7 @@ export default function SignIn(props) {
       if(stat===200){
         // console.log("yes")
         console.log(response.data);
+        setUserId(response.data);
         history.push(`/dashboard`); //send response.data to dashboard
         // axios
       //   .get("http://localhost:8080/api/posts", { headers: header })
