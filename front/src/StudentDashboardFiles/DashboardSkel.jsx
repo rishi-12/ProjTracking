@@ -148,13 +148,13 @@ export default function DashboardSkel(props) {
   //inside here change token value
   const [userId,setUserId]= useContext(UserContext);
   console.log(userId);
-  const header = { "auth-token": userId }; //here change
-  axios
-    .get("http://localhost:8080/api/posts", { headers: header })
-    .then((resp) => {
-      console.log(resp.data);
-      setName(resp.data.name);
-    });
+  // const header = { "auth-token": userId }; //here change
+  // axios
+  //   .get("http://localhost:8080/api/posts", { headers: header })
+  //   .then((resp) => {
+  //     console.log(resp.data);
+  //     setName(resp.data.name);
+  //   });
 
 
   return (
@@ -211,7 +211,7 @@ export default function DashboardSkel(props) {
 
         <div className={classes.appBarSpacer} />
             
-            {props.name==="dashboard" && <Dashboard name={name} /> }
+            {props.name==="dashboard" && <Dashboard name="username" /> }
             {props.name==="projectlist" && <ProjectList /> }
             {props.name==="project" && <Project /> }
       </main>

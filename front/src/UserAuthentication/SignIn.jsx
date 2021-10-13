@@ -78,54 +78,55 @@ export default function SignIn(props) {
       password: event.target.password.value
     };
     // console.log(user1);
-    var stat=200;
-    axios.post("http://localhost:8080/api/user/login", user1).catch(function (error) {
-      if (error.response) {
-        // Request made and server responded
-        console.log(error.response.data);
-        setFlag(true);
-        setMsg(error.response.data) ;
-        console.log(error.response.status);
-        stat=error.response.status;
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // The request was made but no response was received
-        console.log(error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log('Error', error.message);
-      }
+    history.push(`/dashboard`);
+    // var stat=200;
+    // axios.post("http://localhost:8080/api/user/login", user1).catch(function (error) {
+    //   if (error.response) {
+    //     // Request made and server responded
+    //     console.log(error.response.data);
+    //     setFlag(true);
+    //     setMsg(error.response.data) ;
+    //     console.log(error.response.status);
+    //     stat=error.response.status;
+    //     console.log(error.response.headers);
+    //   } else if (error.request) {
+    //     // The request was made but no response was received
+    //     console.log(error.request);
+    //   } else {
+    //     // Something happened in setting up the request that triggered an Error
+    //     console.log('Error', error.message);
+    //   }
   
-    })     
-      .then((response) => {
-      // if(stat===200)
-      console.log("statusss")
-      console.log(stat);
-      if(stat===200){
-        // console.log("yes")
-        console.log(response.data);
-        setUserId(response.data);
-        history.push(`/dashboard`); //send response.data to dashboard
-        // axios
-      //   .get("http://localhost:8080/api/posts", { headers: header })
-      //   .then((resp) => {
-      //     console.log(resp);
-      //   });
+    // })     
+    //   .then((response) => {
+    //   // if(stat===200)
+    //   console.log("statusss")
+    //   console.log(stat);
+    //   if(stat===200){
+    //     // console.log("yes")
+    //     console.log(response.data);
+    //     setUserId(response.data);
+    //     history.push(`/dashboard`); //send response.data to dashboard
+    //     // axios
+    //   //   .get("http://localhost:8080/api/posts", { headers: header })
+    //   //   .then((resp) => {
+    //   //     console.log(resp);
+    //   //   });
 
-      }
-      //check condition then if error then do this
+    //   }
+    //   //check condition then if error then do this
       
-      // setFlag(true);
-      // setMsg(response.data) ;
+    //   // setFlag(true);
+    //   // setMsg(response.data) ;
       
-      console.log(123);
+    //   console.log(123);
       
-    // const header = { "auth-token": response.data };
+    // // const header = { "auth-token": response.data };
       
-    //   console.log(header);
-    //   props.setLog(true);
+    // //   console.log(header);
+    // //   props.setLog(true);
       
-    });
+    // });
 
  
   
