@@ -75,21 +75,24 @@ export default function FacSignIn(props)
     console.log(event.target.facultyid.value);
     console.log(event.target)
     const user1 = {
+      email: event.target.email.value,
       facultyid: event.target.facultyid.value,
       password: event.target.password.value
     };
+    history.push(`/addproject`);
 }
     // console.log(user1);
-    //history.push(`/dashboard`);
+    
     return (
         <Container  component="main" maxWidth="xs">
+        {/* <h1 style={{textAlign:'center'}}>Faculty sign in page</h1> */}
     <CssBaseline />
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Sign in
+        Faculty Sign in
       </Typography>
       <form onSubmit={handleSignIn} className={classes.form} noValidate>
         <TextField
@@ -101,6 +104,17 @@ export default function FacSignIn(props)
           label="Faculty ID"
           name="facultyid"
           autoComplete="facultyid"
+          autoFocus
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Email"
+          name="email"
+          autoComplete="email"
           autoFocus
         />
         <TextField
