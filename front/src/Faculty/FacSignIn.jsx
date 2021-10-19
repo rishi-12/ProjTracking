@@ -78,6 +78,7 @@ export default function FacSignIn(props)
       facultyid: event.target.facultyid.value,
       password: event.target.password.value
     };
+}
     // console.log(user1);
     //history.push(`/dashboard`);
     return (
@@ -150,4 +151,4 @@ export default function FacSignIn(props)
     
     );
 }
-}
+
