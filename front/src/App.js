@@ -13,6 +13,7 @@ import Form from "./StudentDashboardFiles/Form.jsx";
 // import Login from "./UserAuthentication/Login";
 // import {LogInProvider} from './LoginContext';
 import {UserProvider} from './UserContext';
+import FacSignIn from "./Faculty/FacSignIn";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/SignUp' exact component={SignUp} />
         <Route path='/home' exact component={Home} />
         <Route path='/addproject' exact component={Form} />
+        <Route path='/facsignin' exact component={FacSignIn} />
         <Route path='/dashboard'  exact component={()=>(<DashboardSkel name="dashboard"/>)} />
         <Route path='/projects' exact component={()=>(<DashboardSkel name="projectlist"/>)} />
         <Route path='/projects/:projectId' exact component={()=>(<DashboardSkel name="project"/>)} />

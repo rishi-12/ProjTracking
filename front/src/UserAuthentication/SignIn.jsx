@@ -192,6 +192,11 @@ export default function SignIn(props) {
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>
+          <Grid item>
+            <Link href="/facsignin" variant="body2">
+              {"If you are a faculty, click here to sign in"}
+            </Link>
+          </Grid>
         </Grid>
       </form>
     </div>
