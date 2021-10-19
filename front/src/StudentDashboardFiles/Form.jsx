@@ -1,66 +1,84 @@
-import React from "react";
-//import "./Form.css";
+import React,{useState} from "react";
+import Avatar from '@material-ui/core/Avatar';
+import TextField from '@material-ui/core/TextField';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import CreateIcon from '@material-ui/icons/Create';
 
-function Form(name, setName, headingText, setHeading, projDesc, setDesc) {
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-
-  function handleChangename(event) {
-    console.log(event.target.value);
-    setName(event.target.value);
-  }
-
-  function handleChangedesc(event) {
-    console.log(event.target.value);
-    setName(event.target.value);
-  }
-
-  function handleClick(event) {
-    setHeading(name);
-    event.preventDefault();
+export default function Form(){
+  const classes = useStyles();
+  function handleSignIn(event){
+    console.log(event.target);
   }
 
   return (
-    <div className="container">
-      {/* <h1>Hello {headingText}</h1> */}
-      <form onSubmit={handleClick}>
-        <h1>Create Project</h1>
-        <p>Please fill in this form to create your project.</p>
-        <hr />
-
-        <label>
-          <b>Project Name: </b>
-        </label>
-        <input
-          onChange={handleChangename}
-          type="text"
-          placeholder="Enter project title/name"
-          name="projname"
+    <Container  component="main" maxWidth="xs">
+        {/* <h1 style={{textAlign:'center'}}>Faculty sign in page</h1> */}
+    <CssBaseline />
+    <div className={classes.paper}>
+    <Avatar className={classes.avatar}>
+        <CreateIcon />
+      </Avatar>
+    <Typography component="h1" variant="h5">
+        Create project
+      </Typography>
+    <form onSubmit={handleSignIn} className={classes.form}>
+    <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
           id="projname"
-          required
+          label="Project Name"
+          name="projectname"
+          autoComplete="projectname"
+          autoFocus
         />
-        <br />
-        <br />
-
-        <label>
-          <b>Project description: </b>
-        </label>
-        <input
-          onChange={handleChangedesc}
-          type="text"
-          placeholder="Type your project description in not more than 50 words"
-          name="projdesc"
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
           id="projdesc"
-          required
+          label="Project description"
+          name="projectdesc"
+          autoComplete="projectdesc"
+          autoFocus
         />
-
-        <br />
-        <br />
-        <button type="submit" className="createbtn">
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+        >
           Create
-        </button>
-      </form>
+        </Button>
+    </form> 
     </div>
+  </Container>
   );
 }
-
-export default Form;

@@ -31,7 +31,7 @@ function App() {
         <Route path='/' exact component={SignIn} />
         <Route path='/SignUp' exact component={SignUp} />
         <Route path='/home' exact component={Home} />
-        <Route path='/addproject'  exact component={()=>(<DashboardSkel name="Form"/>)} />
+        <Route path='/addproject'  exact component={Form} />        
         <Route path='/facsignin' exact component={FacSignIn} />
         <Route path='/dashboard'  exact component={()=>(<DashboardSkel name="dashboard"/>)} />
         <Route path='/projects' exact component={()=>(<DashboardSkel name="projectlist"/>)} />
