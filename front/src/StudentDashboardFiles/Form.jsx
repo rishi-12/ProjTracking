@@ -1,5 +1,5 @@
 import React from "react";
-// import "./Form.css";
+//import "./Form.css";
 
 function Form(name, setName, headingText, setHeading, projDesc, setDesc) {
 
