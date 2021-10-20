@@ -29,6 +29,7 @@ import Project from './Projects/Project';
 // import { ProgressPlugin } from 'webpack';
 import axios from "axios";
 import {UserContext} from '../UserContext';
+import Form from './Form.jsx';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -214,6 +215,7 @@ export default function DashboardSkel(props) {
             {props.name==="dashboard" && <Dashboard name="username" /> }
             {props.name==="projectlist" && <ProjectList /> }
             {props.name==="project" && <Project /> }
+            {props.name==="form" && <Form /> }
       </main>
 
 
