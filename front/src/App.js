@@ -14,7 +14,7 @@ import Form from "./StudentDashboardFiles/Form.jsx";
 // import {LogInProvider} from './LoginContext';
 import {UserProvider} from './UserContext';
 import FacSignIn from "./Faculty/FacSignIn";
-
+import FacDashboardSkel from "./Faculty/FacDashboardSkel";
 
 function App() {
 
@@ -36,6 +36,9 @@ function App() {
         <Route path='/dashboard'  exact component={()=>(<DashboardSkel name="dashboard"/>)} />
         <Route path='/projects' exact component={()=>(<DashboardSkel name="projectlist"/>)} />
         <Route path='/projects/:projectId' exact component={()=>(<DashboardSkel name="project"/>)} />
+        <Route path='/fdashboard'  exact component={()=>(<FacDashboardSkel name="dashboard"/>)} />
+        <Route path='/fprojects' exact component={()=>(<FacDashboardSkel name="projectlist"/>)} />
+        <Route path='/fprojects/:projectId' exact component={()=>(<FacDashboardSkel name="project"/>)} />
         <Route path='/about' component={About} />
         {/* <Route path='/shop' component={Shop} /> */}
         </Switch>

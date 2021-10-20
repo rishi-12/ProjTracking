@@ -1,0 +1,41 @@
+h1 {
+    text-align: center;
+  }
+  html {
+    background-color: lightblue;
+  }
+  form {
+    padding: 300px;
+    padding-top: 10px;
+  }
+  
+  .container {
+    margin-top: 20px;
+    padding: 40px;
+    padding-bottom: 2px;
+  }
+  
+  button:hover {
+    opacity: 0.4;
+  }
+  
+  button {
+    background-color: #4caf50;
+    width: 50%;
+    color: black;
+    padding: 15px;
+    margin: 10px 0px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 70%;
+    margin: 8px 0;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 2px blue;
+    box-sizing: border-box;
+  }
+  
