@@ -34,14 +34,14 @@ export const mainListItems = (
       <ListItemIcon>
         <ListAltIcon />
       </ListItemIcon>
-      <ListItemText primary="Projects" />
+      <ListItemText primary="Create project" />
     </ListItem>
 
     <ListItem button>
       <ListItemIcon>
         <SettingsIcon />
       </ListItemIcon>
-      <ListItemText primary="Settings" />
+      <ListItemText primary="Update project" />
     </ListItem>
     
     <ListItem button>

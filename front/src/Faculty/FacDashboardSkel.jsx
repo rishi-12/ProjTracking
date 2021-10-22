@@ -26,6 +26,7 @@ import { mainListItems } from './listItems';
 import Dashboard from './Dashboard';
 import ProjectList from './ProjectList';
 import Project from './Projects/Project';
+import Form from './Form.jsx';
 // import { ProgressPlugin } from 'webpack';
 import axios from "axios";
 import {UserContext} from '../UserContext';
@@ -214,6 +215,7 @@ export default function FacDashboardSkel(props) {
             {props.name==="dashboard" && <Dashboard name="username" /> }
             {props.name==="projectlist" && <ProjectList /> }
             {props.name==="project" && <Project /> }
+            {props.name==="form" && <Form /> }
       </main>
 
 

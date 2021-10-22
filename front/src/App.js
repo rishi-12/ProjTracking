@@ -33,7 +33,7 @@ function App() {
         <Route path='/home' exact component={Home} />
         {/* <Route path='/addproject'  exact component={Form} />         */}
         <Route path='/facsignin' exact component={FacSignIn} />
-        <Route path='/addproject'  exact component={()=>(<DashboardSkel name="form"/>)} />
+        <Route path='/addproject'  exact component={()=>(<FacDashboardSkel name="form"/>)} />
         <Route path='/dashboard'  exact component={()=>(<DashboardSkel name="dashboard"/>)} />
         <Route path='/projects' exact component={()=>(<DashboardSkel name="projectlist"/>)} />
         <Route path='/projects/:projectId' exact component={()=>(<DashboardSkel name="project"/>)} />
