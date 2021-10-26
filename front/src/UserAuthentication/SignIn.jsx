@@ -77,9 +77,34 @@ export default function SignIn(props) {
       email: event.target.email.value,
       password: event.target.password.value
     };
-    // console.log(user1);
-    history.push(`/dashboard`);
-    // var stat=200;
+    console.log(user1);
+
+    const user =JSON.stringify(user1);
+
+    axios.post("http://localhost:8080/mavenproject2/StudentLogin", user,{
+
+      "headers": {
+      
+      "content-type": "application/x-www-form-urlencoded",
+      
+      },}
+      ).catch(function (error) {
+ 
+      console.log("error");
+      console.log(error);
+    
+      }) 
+      .then((response) => {
+
+      console.log("sent");
+      console.log(response);
+      
+    });
+    axios
+        .get("http://localhost:8080/mavenproject2/firstServiceCall")
+        .then((resp) => {
+          console.log(resp);
+        });
     // axios.post("http://localhost:8080/api/user/login", user1).catch(function (error) {
     //   if (error.response) {
     //     // Request made and server responded
