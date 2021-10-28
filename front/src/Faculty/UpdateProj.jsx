@@ -6,8 +6,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import CreateIcon from '@material-ui/icons/Create';
-import axios from "axios";
+import UpdateIcon from '@material-ui/icons/Update';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,44 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Form(){
+export default function UpdateProj(){
   const classes = useStyles();
+
+
   function handleSignIn(event){
-
-    event.preventDefault();
-    // const temproj = {
-    //   projname:event.target.projectname.value,
-    //   projdescription:event.target.projectdesc.value
-    // };
-
-    // const fac =JSON.stringify(temproj);
-
-    // axios.post("http://localhost:8080/mavenproject2/FacultyLogin", fac,{
-
-    //   "headers": {
-      
-    //   "content-type": "application/x-www-form-urlencoded",
-      
-    //   },}
-    //   ).catch(function (error) {
- 
-    //   console.log("error");
-    //   console.log(error);
-    
-    //   }) 
-    //   .then((response) => {
-
-    //   console.log("sent");
-    //   console.log(response);
-    //   if(response.data==='Success'){
-    //     history.push(`/addproject`)
-    //   }
-    //   else{
-    //     setShowit(true);
-    //   }
-      
-    // });
-
+    console.log(event.target);
   }
 
   return (
@@ -75,16 +42,26 @@ export default function Form(){
     <CssBaseline />
     <div className={classes.paper}>
     <Avatar className={classes.avatar}>
-        <CreateIcon />
+        <UpdateIcon />
       </Avatar>
     <Typography component="h1" variant="h5">
-        Create project
+        Update project
       </Typography>
     <form onSubmit={handleSignIn} className={classes.form}>
     <TextField
           variant="outlined"
           margin="normal"
           required
+          fullWidth
+          id="projid"
+          label="Project ID"
+          name="projectid"
+          autoComplete="projectid"
+          autoFocus
+        />
+    <TextField
+          variant="outlined"
+          margin="normal"
           fullWidth
           id="projname"
           label="Project Name"
@@ -95,7 +72,6 @@ export default function Form(){
         <TextField
           variant="outlined"
           margin="normal"
-          required
           fullWidth
           id="projdesc"
           label="Project description"
@@ -110,7 +86,7 @@ export default function Form(){
           color="primary"
           className={classes.submit}
         >
-          Create
+          Update
         </Button>
     </form> 
     </div>

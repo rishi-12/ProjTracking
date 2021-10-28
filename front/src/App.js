@@ -15,7 +15,7 @@ import Form from "./StudentDashboardFiles/Form.jsx";
 import {UserProvider} from './UserContext';
 import FacSignIn from "./Faculty/FacSignIn";
 import FacDashboardSkel from "./Faculty/FacDashboardSkel";
-
+import UpdateProj from "./Faculty/UpdateProj";
 function App() {
 
   const [isLoggedIn,setLogin]=useState(false);
@@ -34,12 +34,15 @@ function App() {
         {/* <Route path='/addproject'  exact component={Form} />         */}
         <Route path='/facsignin' exact component={FacSignIn} />
         <Route path='/addproject'  exact component={()=>(<FacDashboardSkel name="form"/>)} />
+        <Route path='/updateproject'  exact component={()=>(<FacDashboardSkel name="updateproj"/>)} />
+        <Route path='/facultyprojectlist'  exact component={()=>(<FacDashboardSkel name="facprojlist"/>)} />
+        <Route path='/facprojects/:projectId' exact component={()=>(<FacDashboardSkel name="facproject"/>)} />
         <Route path='/dashboard'  exact component={()=>(<DashboardSkel name="dashboard"/>)} />
         <Route path='/projects' exact component={()=>(<DashboardSkel name="projectlist"/>)} />
         <Route path='/projects/:projectId' exact component={()=>(<DashboardSkel name="project"/>)} />
-        <Route path='/fdashboard'  exact component={()=>(<FacDashboardSkel name="dashboard"/>)} />
+        {/* <Route path='/fdashboard'  exact component={()=>(<FacDashboardSkel name="dashboard"/>)} />
         <Route path='/fprojects' exact component={()=>(<FacDashboardSkel name="projectlist"/>)} />
-        <Route path='/fprojects/:projectId' exact component={()=>(<FacDashboardSkel name="project"/>)} />
+        <Route path='/fprojects/:projectId' exact component={()=>(<FacDashboardSkel name="project"/>)} /> */}
         <Route path='/about' component={About} />
         {/* <Route path='/shop' component={Shop} /> */}
         </Switch>

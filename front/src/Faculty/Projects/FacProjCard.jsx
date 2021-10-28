@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProjCard(props) {
+export default function FacProjCard(props) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -38,15 +38,15 @@ export default function ProjCard(props) {
           {/* be{bull}nev{bull}o{bull}lent */}
           {props.name}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        {/* <Typography className={classes.pos} color="textSecondary">
           {props.faculty}
-        </Typography>
+        </Typography> */}
         <Typography variant="body2" component="p">
           Team size: {props.teamsize}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained" color="default" component={Link} to={`/projects/${props.id}`}>Click Here</Button>
+        <Button size="small" variant="contained" color="default" component={Link} to={`/facprojects/${props.id}`}>Click Here</Button>
       </CardActions>
     </Card>
   );

@@ -19,17 +19,19 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems } from './listItems';
+import { mainListItems } from './FaclistItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
 import Dashboard from './Dashboard';
-import ProjectList from './ProjectList';
-import Project from './Projects/Project';
+ import FacProjectList from './FacProjectList';
+import Project from './Projects/FacProject';
 import Form from './Form.jsx';
 // import { ProgressPlugin } from 'webpack';
 import axios from "axios";
 import {UserContext} from '../UserContext';
+import UpdateProj from './UpdateProj';
+import FacProject from "./Projects/FacProject.jsx";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -212,10 +214,14 @@ export default function FacDashboardSkel(props) {
 
         <div className={classes.appBarSpacer} />
             
-            {props.name==="dashboard" && <Dashboard name="username" /> }
-            {props.name==="projectlist" && <ProjectList /> }
+            {/* {props.name==="dashboard" && <Dashboard name="username" /> } */}
+            {/* {props.name==="projectlist" && <ProjectList /> } */}
             {props.name==="project" && <Project /> }
             {props.name==="form" && <Form /> }
+            {props.name==="updateproj" && <UpdateProj /> }
+            {props.name==="facprojlist" && <FacProjectList /> }
+            {props.name==="facproject" && <FacProject /> }
+
       </main>
 
 

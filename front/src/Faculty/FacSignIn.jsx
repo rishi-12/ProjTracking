@@ -15,11 +15,12 @@ import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom"; 
 import {useState} from "react";
 // import { useContext } from 'react';
-// import Alert from '@mui/material/Alert';
 import Alert from '@material-ui/lab/Alert';
 import axios from "axios";
+import  Modal  from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 import {UserContext} from '../UserContext';
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -37,7 +38,17 @@ const divstyle={
     backgroundSize: 'cover',
   };
   const useStyles = makeStyles((theme) => ({
-  
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    paper1: {
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
     paper: {
   
       marginTop: theme.spacing(8),
@@ -66,6 +77,11 @@ export default function FacSignIn(props)
   const [errorFlag,setFlag]=useState(false);
   const [errorMsg,setMsg]=useState("");
   //const [userId,setUserId] = useContext(UserContext);
+  const [showit, setShowit] = useState(false)
+
+  function closeModal() {
+    setShowit(false)
+  }
   console.log("hello");
   //console.log(userId);
   function handleSignIn(event) {
@@ -99,6 +115,12 @@ export default function FacSignIn(props)
 
       console.log("sent");
       console.log(response);
+      if(response.data==='Success'){
+        history.push(`/addproject`)
+      }
+      else{
+        setShowit(true);
+      }
       
     });
     //history.push(`/addproject`);
@@ -184,9 +206,25 @@ export default function FacSignIn(props)
         </Grid>
       </form>
     </div>
-    {/* <Box mt={8}>
-      <Copyright />
-    </Box> */}
+    <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={showit}
+        onClose={closeModal}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showit}>
+          <div className={classes.paper1}>
+            <h2 id="transition-modal-title" align="center">SIGN-IN ERROR</h2>
+            <p id="transition-modal-description" align="center">Credentials Incorrect !!!</p>
+          </div>
+        </Fade>
+      </Modal>
   </Container>
   // </div>
     
