@@ -1,9 +1,10 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import ProjCard from "./Projects/ProjCard";
 import axios from "axios";
+import { UserContext } from '../UserContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProjectList(props) {
   const classes = useStyles();
-  const stud_id="1";
+  console.log(props.stud_id);
+  const [userId,setUserId]= useContext(UserContext);
+  console.log(userId);
+  const stud_id=userId;
   var projs1;
   const [projs,setProjs]=useState([]);
   const Fetchdata = () => {
