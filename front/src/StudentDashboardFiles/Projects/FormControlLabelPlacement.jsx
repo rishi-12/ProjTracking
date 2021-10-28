@@ -4,12 +4,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { getThemeProps } from '@material-ui/styles';
 
-export default function FormControlLabelPlacement() {
+export default function FormControlLabelPlacement(props) {
   return (
     <FormControl component="fieldset">
       {/* <FormLabel component="legend">labelPlacement</FormLabel> */}
-      <RadioGroup row aria-label="position" name="position" defaultValue="todo">
+      <RadioGroup row aria-label="position" name="position" defaultValue={props.status}>
         <FormControlLabel
           value="todo"
           control={<Radio color="primary" />}
@@ -17,13 +18,13 @@ export default function FormControlLabelPlacement() {
           labelPlacement="top"
         />
         <FormControlLabel
-          value="inprogress"
+          value="inprog"
           control={<Radio color="primary" />}
           label="In Progress"
           labelPlacement="top"
         />
         <FormControlLabel
-          value="completed"
+          value="complete"
           control={<Radio color="primary" />}
           label="Completed"
           labelPlacement="top"

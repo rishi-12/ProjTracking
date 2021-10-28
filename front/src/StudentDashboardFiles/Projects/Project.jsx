@@ -73,7 +73,7 @@ return(
           </div>
           <PieChart />
           <br></br>
-          <TaskTable/>
+          <TaskTable projectId={projectId} />
         </Container>
   );
 }
