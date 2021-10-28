@@ -179,7 +179,7 @@ export default function FacDashboardSkel(props) {
             Project Tracking DashBoard
           </Typography>
 
-        <Button component={Link} href={"/"} variant="contained" color="secondary" style={logout_style}>Logout</Button>
+        <Button component={Link} href={"/facsignin"} variant="contained" color="secondary" style={logout_style}>Logout</Button>
           
 
 

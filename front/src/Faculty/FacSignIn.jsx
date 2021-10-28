@@ -79,6 +79,8 @@ export default function FacSignIn(props)
       facultyid: event.target.facultyid.value,
       password: event.target.password.value
     };
+
+    
     history.push(`/addproject`);
 }
     // console.log(user1);
@@ -152,6 +154,11 @@ export default function FacSignIn(props)
           <Grid item>
             <Link href="/SignUp" variant="body2">
               {"Don't have an account? Sign Up"}
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link href="/" variant="body2">
+              {"Are you a student? Click here to login as student"}
             </Link>
           </Grid>
         </Grid>
