@@ -23,18 +23,6 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 import {UserContext} from '../UserContext';
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const divstyle={
   background: `url('https://wallpaperaccess.com/full/208106.jpg')`,
@@ -90,39 +78,28 @@ export default function SignIn(props) {
     // console.log(users);
   
     event.preventDefault();
-    console.log(event.target.email.value);
-    console.log(event.target)
     const user1 = {
       email: event.target.email.value,
       password: event.target.password.value
     };
-    console.log(user1);
 
     const user =JSON.stringify(user1);
     axios.post("http://localhost:8080/mavenproject2/StudentLogin", user,{
-
       "headers": {
-      
       "content-type": "application/x-www-form-urlencoded",
-      
       },}
       ).catch(function (error) {
- 
-      console.log("error");
-      console.log(error);
-    
+            console.log(error);
       }) 
       .then((response) => {
-
-      console.log("sent");
-      console.log(response.data,'True')
-      if(response.data==='True'){
-        history.push(`/dashboard`)
-      }
-      else{
-        setShowit(true);
-      }
-      
+            console.log("sent");
+            console.log(response.data,'True')
+            if(response.data==='True'){
+              history.push(`/dashboard`)
+            }
+            else{
+              setShowit(true);
+            }   
     });
     // axios
     //     .get("http://localhost:8080/mavenproject2/firstServiceCall")
@@ -215,10 +192,10 @@ export default function SignIn(props) {
           id="password"
           autoComplete="current-password"
         />
-        <FormControlLabel
+        {/* <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
-        />
+        /> */}
         {errorFlag && <Alert severity="error">{errorMsg}</Alert> }
         {/* <Alert severity="error">This is an error alert — check it out!</Alert> */}
         <Button
