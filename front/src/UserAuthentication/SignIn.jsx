@@ -100,11 +100,11 @@ export default function SignIn(props) {
       console.log(response);
       
     });
-    axios
-        .get("http://localhost:8080/mavenproject2/firstServiceCall")
-        .then((resp) => {
-          console.log(resp);
-        });
+    // axios
+    //     .get("http://localhost:8080/mavenproject2/firstServiceCall")
+    //     .then((resp) => {
+    //       console.log(resp);
+    //     });
     // axios.post("http://localhost:8080/api/user/login", user1).catch(function (error) {
     //   if (error.response) {
     //     // Request made and server responded

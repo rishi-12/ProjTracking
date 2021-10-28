@@ -39,7 +39,7 @@ export default function ProjCard(props) {
           {props.name}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          {props.faculty}
+          faculty name
         </Typography>
         <Typography variant="body2" component="p">
           Team size: {props.teamsize}

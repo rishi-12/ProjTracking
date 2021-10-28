@@ -156,8 +156,7 @@ export default function DashboardSkel(props) {
   //     console.log(resp.data);
   //     setName(resp.data.name);
   //   });
-
-
+   
   return (
 
     // Top bar
