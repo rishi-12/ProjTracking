@@ -80,8 +80,28 @@ export default function FacSignIn(props)
       password: event.target.password.value
     };
 
+    const fac =JSON.stringify(user1);
+
+    axios.post("http://localhost:8080/mavenproject2/FacultyLogin", fac,{
+
+      "headers": {
+      
+      "content-type": "application/x-www-form-urlencoded",
+      
+      },}
+      ).catch(function (error) {
+ 
+      console.log("error");
+      console.log(error);
     
-    history.push(`/addproject`);
+      }) 
+      .then((response) => {
+
+      console.log("sent");
+      console.log(response);
+      
+    });
+    //history.push(`/addproject`);
 }
     // console.log(user1);
     
