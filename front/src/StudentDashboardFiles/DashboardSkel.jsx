@@ -212,7 +212,7 @@ export default function DashboardSkel(props) {
         <div className={classes.appBarSpacer} />
             
             {props.name==="dashboard" && <Dashboard name="username" /> }
-            {props.name==="projectlist" && <ProjectList /> }
+            {props.name==="projectlist" && <ProjectList  /> }
             {props.name==="project" && <Project /> }
             {/* {props.name==="form" && <Form /> } */}
       </main>

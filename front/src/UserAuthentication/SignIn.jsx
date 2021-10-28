@@ -78,7 +78,7 @@ export default function SignIn(props) {
   const [errorFlag,setFlag]=useState(false);
   const [errorMsg,setMsg]=useState("");
   const [userId,setUserId] = useContext(UserContext);
-  const [showit, setShowit] = useState(false)
+  const [showit, setShowit] = useState(false);
 
   function closeModal() {
     setShowit(false)
@@ -115,12 +115,15 @@ export default function SignIn(props) {
       .then((response) => {
 
       console.log("sent");
-      console.log(response.data,'True')
-      if(response.data==='True'){
-        history.push(`/dashboard`)
+      console.log(response);
+      if(response.data==='False'){
+        setShowit(true);
       }
       else{
-        setShowit(true);
+        console.log(response);
+        setUserId(response.data);
+
+        history.push(`/dashboard`);
       }
       
     });
