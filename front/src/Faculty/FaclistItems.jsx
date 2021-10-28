@@ -23,7 +23,7 @@ export function handle_projectclick(){
 export const mainListItems = (
   <div>
 
-    <ListItem button component={Link} to="/">
+    <ListItem button component={Link} to="/addproject">
       <ListItemIcon>
         <HomeIcon />
       </ListItemIcon>

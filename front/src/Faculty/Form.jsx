@@ -8,6 +8,9 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import CreateIcon from '@material-ui/icons/Create';
 import axios from "axios";
+import { useHistory } from "react-router-dom"; 
+import {FacContext} from './FacContext';
+import { useContext } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,41 +34,46 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Form(){
   const classes = useStyles();
+  const history = useHistory();
+  const [facId,setFacId ]= useContext(FacContext);
   function handleSignIn(event){
 
+
+    console.log(facId+' is somsd');
     event.preventDefault();
-    // const temproj = {
-    //   projname:event.target.projectname.value,
-    //   projdescription:event.target.projectdesc.value
-    // };
+    const temproj = {
+      projname:event.target.projectname.value,
+      projdescription:event.target.projectdesc.value,
+      facid: facId
+    };
 
-    // const fac =JSON.stringify(temproj);
+    const fac =JSON.stringify(temproj);
 
-    // axios.post("http://localhost:8080/mavenproject2/FacultyLogin", fac,{
+    axios.post("http://localhost:8080/mavenproject2/CreateProject", fac,{
 
-    //   "headers": {
+      "headers": {
       
-    //   "content-type": "application/x-www-form-urlencoded",
+      "content-type": "application/x-www-form-urlencoded",
       
-    //   },}
-    //   ).catch(function (error) {
+      },}
+      ).catch(function (error) {
  
-    //   console.log("error");
-    //   console.log(error);
+      console.log("error");
+      console.log(error);
     
-    //   }) 
-    //   .then((response) => {
+      }) 
+      .then((response) => {
 
-    //   console.log("sent");
-    //   console.log(response);
-    //   if(response.data==='Success'){
-    //     history.push(`/addproject`)
-    //   }
-    //   else{
-    //     setShowit(true);
-    //   }
+      console.log("sent");
+      console.log(response);
+      if(response.data==='True'){
+        history.push('/updateproject');
+      }
+      else{
+        history.push('/addproject');
+      }
       
-    // });
+    });
 
   }
 

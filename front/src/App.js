@@ -13,6 +13,7 @@ import Form from "./StudentDashboardFiles/Form.jsx";
 // import Login from "./UserAuthentication/Login";
 // import {LogInProvider} from './LoginContext';
 import {UserProvider} from './UserContext';
+import {FacProvider} from './Faculty/FacContext';
 import FacSignIn from "./Faculty/FacSignIn";
 import FacDashboardSkel from "./Faculty/FacDashboardSkel";
 import UpdateProj from "./Faculty/UpdateProj";
@@ -23,6 +24,7 @@ function App() {
 
   return (
     // (!isLoggedIn) ? <SignIn setLogin={setLogin} /> :
+    <FacProvider>
     <UserProvider>
     <div>
     <Router>
@@ -50,6 +52,7 @@ function App() {
     </Router>
     </div>
     </UserProvider>
+    </FacProvider>
   );
 }
 

@@ -20,7 +20,8 @@ import axios from "axios";
 import  Modal  from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import {UserContext} from '../UserContext';
+import {FacContext} from './FacContext';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -78,6 +79,7 @@ export default function FacSignIn(props)
   const [errorMsg,setMsg]=useState("");
   //const [userId,setUserId] = useContext(UserContext);
   const [showit, setShowit] = useState(false)
+  const [facId,setFacId ]= useContext(FacContext);
 
   function closeModal() {
     setShowit(false)
@@ -96,6 +98,9 @@ export default function FacSignIn(props)
       password: event.target.password.value
     };
 
+    setFacId(event.target.facultyid.value);
+    
+    console.log(facId+' dfsfsdf')
     const fac =JSON.stringify(user1);
 
     axios.post("http://localhost:8080/mavenproject2/FacultyLogin", fac,{
@@ -116,6 +121,9 @@ export default function FacSignIn(props)
       console.log("sent");
       console.log(response);
       if(response.data==='Success'){
+        // console.log(user1.facultyid+' sfasd as fda')
+        
+        // console.log(facId+' this is facid in facsign')
         history.push(`/addproject`)
       }
       else{
@@ -172,10 +180,10 @@ export default function FacSignIn(props)
           id="password"
           autoComplete="current-password"
         />
-        <FormControlLabel
+        {/* <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
-        />
+        /> */}
         {errorFlag && <Alert severity="error">{errorMsg}</Alert> }
         {/* <Alert severity="error">This is an error alert — check it out!</Alert> */}
         <Button
@@ -230,4 +238,3 @@ export default function FacSignIn(props)
     
     );
 }
-
