@@ -19,7 +19,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems } from '../listItems';
+import { mainListItems } from '../FaclistItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import ProjCard from "./Projects/ProjCard";
@@ -27,12 +27,16 @@ import { mainListItems } from '../listItems';
 import PieChart from './PieChart';
 import { useParams } from 'react-router-dom';
 import TaskTable from './TaskTable'
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
+  button: {
+    margin: theme.spacing(1),
+  }
 }));
 
 const projs=[{id:'1r3fwac',name:"B.Tech Project Tracking Dashboard",faculty:"Arunkumar C",teamsize: 5},{id:'1r3saa',name:"Alumuni Portal",faculty:"Pratilotamai M",teamsize: 4},{id:'23gvrew',name:"Course Website",faculty:"Venkataraman D",teamsize: 6},{id:'32efwewc',name:"Student Profile",faculty:"Gowtham R",teamsize: 5},{id:'45rgav',name:"Workshop Management",faculty:"Senthilkumar M",teamsize: 4}];
@@ -41,7 +45,7 @@ const div_style = {
   marginleft: '40%',
 }
 
-export default function Project() {
+export default function FacProject() {
   const classes = useStyles();
   const {projectId}=useParams();
   console.log(projectId);
@@ -55,6 +59,14 @@ return(
             <h1 style={div_style}>{result[0].name}</h1>
             <h3>{result[0].faculty}</h3>
           </div>
+          <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        startIcon={<AddIcon />}
+      >
+        Add student
+      </Button>
           <PieChart />
           <br></br>
           <TaskTable/>

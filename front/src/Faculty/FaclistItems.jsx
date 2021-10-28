@@ -23,21 +23,28 @@ export function handle_projectclick(){
 export const mainListItems = (
   <div>
 
-    <ListItem button component={Link} to="/dashboard">
+    <ListItem button component={Link} to="/">
       <ListItemIcon>
         <HomeIcon />
       </ListItemIcon>
       <ListItemText primary="Home" />
     </ListItem>
 
-    <ListItem button component={Link} to="/projects">
+    <ListItem button component={Link} to="/facultyprojectlist">
+      <ListItemIcon>
+        <ListAltIcon />
+      </ListItemIcon>
+      <ListItemText primary="Projects" />
+    </ListItem>
+
+    <ListItem button component={Link} to="/addproject">
       <ListItemIcon>
         <ListAltIcon />
       </ListItemIcon>
       <ListItemText primary="Create project" />
     </ListItem>
 
-    <ListItem button>
+    <ListItem button  component={Link} to="/updateproject">
       <ListItemIcon>
         <SettingsIcon />
       </ListItemIcon>
