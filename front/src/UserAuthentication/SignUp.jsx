@@ -13,20 +13,24 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from "axios";
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import  Modal  from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import {useState} from "react";
+import { useHistory } from "react-router-dom"; 
 
 const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper1: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -47,34 +51,61 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+  const history = useHistory();
+  const [notmatch, setNotmatch] = useState(false)
+  const [already, setAlready] = useState(false)
+
+  function closeModal1() {
+    setNotmatch(false)
+  }
+  
+  function closeModal2() {
+    setAlready(false)
+  }
+
+
   const classes = useStyles();
   function handleRegister(event) {
     // console.log(users);
   
     event.preventDefault();
-    console.log(event.target.email.value);
-    console.log(event.target)
     const user1 = {
       name: event.target.firstName.value+" "+event.target.lastName.value,
       email: event.target.email.value,
-      password: event.target.password.value
+      password: event.target.password.value,
+      confirm_password: event.target.confirm_password.value
     };
-    console.log(user1);
-  
-    axios.post("http://localhost:8080/api/user/register", user1).then((response) => {
-      console.log(response); 
-      console.log(response.data);
-      //check condition then if error then do this
-      // setFlag(true);
-      // setMsg(response.data) ;
+
+    if(user1.confirm_password!=user1.password){
+      setNotmatch(true);
+    }
+    else{
       
-      console.log(123);
+      const user =JSON.stringify(user1);
+      axios.post("http://localhost:8080/mavenproject2/RegStudent", user,{
+        "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        },}
+        ).catch(function (error) {
+              console.log(error);
+        }) 
+        .then((response) => {
+              console.log("sent");
+              console.log(response.data,'True')
+              if(response.data==='False'){
+                setAlready(true);
+              }
+              else{
+                history.push(`/`);      
+              }   
+      });
 
-    });
 
-    // history.push(`/dashboard`);
+    }
   
   }
+
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -140,7 +171,7 @@ export default function SignUp() {
                 fullWidth
                 name="confirm_password"
                 label="Confirm Password"
-                type="confirm_password"
+                type="password"
                 id="confirm_password"
                 autoComplete="confirm_password"
               />
@@ -173,6 +204,45 @@ export default function SignUp() {
       {/* <Box mt={5}>
         <Copyright />
       </Box> */}
+
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={notmatch}
+        onClose={closeModal1}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={notmatch}>
+          <div className={classes.paper1}>
+            <h2 id="transition-modal-title" align="center">Passwords do not match !!!!</h2>
+          </div>
+        </Fade>
+      </Modal>
+
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={already}
+        onClose={closeModal2}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={already}>
+          <div className={classes.paper1}>
+            <h2 id="transition-modal-title" align="center">Account with email-id already exists.</h2>
+          </div>
+        </Fade>
+      </Modal>
+
     </Container>
   );
 }
