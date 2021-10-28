@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import CreateIcon from '@material-ui/icons/Create';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,7 +32,41 @@ const useStyles = makeStyles((theme) => ({
 export default function Form(){
   const classes = useStyles();
   function handleSignIn(event){
-    console.log(event.target);
+
+    event.preventDefault();
+    const temproj = {
+      projname:event.target.projectname.value,
+      projdescription:event.target.projectdesc.value
+    };
+
+    const fac =JSON.stringify(temproj);
+
+    axios.post("http://localhost:8080/mavenproject2/FacultyLogin", fac,{
+
+      "headers": {
+      
+      "content-type": "application/x-www-form-urlencoded",
+      
+      },}
+      ).catch(function (error) {
+ 
+      console.log("error");
+      console.log(error);
+    
+      }) 
+      .then((response) => {
+
+      console.log("sent");
+      console.log(response);
+      if(response.data==='Success'){
+        history.push(`/addproject`)
+      }
+      else{
+        setShowit(true);
+      }
+      
+    });
+
   }
 
   return (
