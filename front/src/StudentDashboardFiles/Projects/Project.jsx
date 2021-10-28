@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,13 +13,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems } from '../listItems';
+import axios from 'axios';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import ProjCard from "./Projects/ProjCard";
@@ -35,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const projs=[{id:'1r3fwac',name:"B.Tech Project Tracking Dashboard",faculty:"Arunkumar C",teamsize: 5},{id:'1r3saa',name:"Alumuni Portal",faculty:"Pratilotamai M",teamsize: 4},{id:'23gvrew',name:"Course Website",faculty:"Venkataraman D",teamsize: 6},{id:'32efwewc',name:"Student Profile",faculty:"Gowtham R",teamsize: 5},{id:'45rgav',name:"Workshop Management",faculty:"Senthilkumar M",teamsize: 4}];
+const projs=[{id:'1',name:"B.Tech Project Tracking Dashboard",faculty:"Arunkumar C",teamsize: 5},{id:'2',name:"Alumuni Portal",faculty:"Pratilotamai M",teamsize: 4},{id:'3',name:"Course Website",faculty:"Venkataraman D",teamsize: 6},{id:'32efwewc',name:"Student Profile",faculty:"Gowtham R",teamsize: 5},{id:'45rgav',name:"Workshop Management",faculty:"Senthilkumar M",teamsize: 4}];
 
 const div_style = {
   marginleft: '40%',
@@ -47,13 +41,35 @@ export default function Project() {
   console.log(projectId);
   const result = projs.filter(id => id.id===projectId);
   console.log(result);
+  const [projDetail,setProjDetail]=useState({});
+
+  const Fetchdata = () => {
+    axios.post("http://localhost:8080/mavenproject2/Project", projectId
+      ).catch(function (error) {
+  
+      console.log("error");
+      console.log(error);
+    
+      }) 
+      .then((response) => {
+      
+      console.log("sent");
+      console.log(response.data);
+      // console.log(response.data.length);
+      setProjDetail(response.data);
+    });
+  }
+    useEffect(() => {
+      Fetchdata();
+  }, [])
+
 
 return(
         <Container maxWidth="lg" className={classes.container}>
             {/* <h1>{props.name}</h1>        */}
           <div >
-            <h1 style={div_style}>{result[0].name}</h1>
-            <h3>{result[0].faculty}</h3>
+            <h1 style={div_style}>{projDetail.name}</h1>
+            <h3>{projDetail.facultyName}</h3>
           </div>
           <PieChart />
           <br></br>
