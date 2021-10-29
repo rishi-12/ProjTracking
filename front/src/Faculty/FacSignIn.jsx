@@ -201,11 +201,11 @@ export default function FacSignIn(props)
               Forgot password?
             </Link>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <Link href="/SignUp" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
-          </Grid>
+          </Grid> */}
           <Grid item>
             <Link href="/" variant="body2">
               {"Are you a student? Click here to login as student"}
