@@ -20,7 +20,7 @@ import axios from 'axios';
 // import Card from '@material-ui/core/Card';
 import PieChart from './PieChart';
 import { useParams } from 'react-router-dom';
-import TaskTable from './TaskTable'
+import TaskTable from './TaskTable';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -42,6 +42,10 @@ export default function Project() {
   const result = projs.filter(id => id.id===projectId);
   console.log(result);
   const [projDetail,setProjDetail]=useState({});
+  const [cTodo,setTodoCount]=useState(0);
+  const [cInProgress,setInProgressCount]=useState(0);
+  const [cCompleted,setCompletedCount]=useState(0); 
+
 
   const Fetchdata = () => {
     axios.post("http://localhost:8080/mavenproject2/Project", projectId
@@ -71,9 +75,9 @@ return(
             <h1 style={div_style}>{projDetail.name}</h1>
             <h3>{projDetail.facultyName}</h3>
           </div>
-          <PieChart />
+          <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted} />
           <br></br>
-          <TaskTable projectId={projectId} />
+          <TaskTable projectId={projectId} setTodoCount={setTodoCount} setInProgressCount={setInProgressCount} setCompletedCount={setCompletedCount} />
         </Container>
   );
 }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
   Chart,
@@ -18,10 +19,13 @@ const chart_style = {
 
 
 export default function PieChart(props) {
+  const [c1,setC1]=useState(props.c1);
+  const [c2,setC2]=useState(props.c2);
+  const [c3,setC3]=useState(props.c3); 
   const chartData = [
-    { status: 'To Do', tasks: 8 },
-    { status: 'Completed', tasks: 15 },
-    { status: 'In Progress', tasks: 7 },
+    { status: 'To Do', tasks: 3 },
+    { status: 'Completed', tasks: 4 },
+    { status: 'In Progress', tasks: 10 },
   ];
     // const { data: chartData } = this.state;
 
