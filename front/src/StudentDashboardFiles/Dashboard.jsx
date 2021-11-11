@@ -12,8 +12,13 @@ const divstyle = {
 
 
 export default function Dashboard(props) {
-  const [userId,setUserId] = useContext(UserContext);
+  // const [userId,setUserId] = useContext(UserContext);
   const [userName,setUserName]=useState("");
+
+
+  const userId = localStorage.getItem("user_id");
+
+  console.log(userId);
   const Fetchdata = () => {
     axios.post("http://localhost:8080/mavenproject2/Dashboard", userId
       ).catch(function (error) {
@@ -29,6 +34,8 @@ export default function Dashboard(props) {
       // console.log(response.data);
       // // console.log(response.data.length);
       setUserName(response.data);
+      
+
     });
   }
     useEffect(() => {

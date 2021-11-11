@@ -147,15 +147,8 @@ export default function DashboardSkel(props) {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   //inside here change token value
-  const [userId,setUserId]= useContext(UserContext);
-  console.log(userId);
-  // const header = { "auth-token": userId }; //here change
-  // axios
-  //   .get("http://localhost:8080/api/posts", { headers: header })
-  //   .then((resp) => {
-  //     console.log(resp.data);
-  //     setName(resp.data.name);
-  //   });
+  const userId = localStorage.getItem("user_id");
+
    
   return (
 

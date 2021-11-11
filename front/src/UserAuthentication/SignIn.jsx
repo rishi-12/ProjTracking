@@ -65,15 +65,14 @@ export default function SignIn(props) {
   const history = useHistory();
   const [errorFlag,setFlag]=useState(false);
   const [errorMsg,setMsg]=useState("");
-  const [userId,setUserId] = useContext(UserContext);
+  // const [userId,setUserId] = useContext(UserContext);
   const [showit, setShowit] = useState(false);
 
   function closeModal() {
     setShowit(false)
   }
 
-  console.log("hello");
-  console.log(userId);
+
   function handleSignIn(event) {
     // console.log(users);
   
@@ -100,67 +99,15 @@ export default function SignIn(props) {
       }
       else{
         console.log(response);
-        setUserId(response.data);
+        // setUserId(response.data);
+
+        localStorage.setItem("user_id", response.data);
 
         history.push(`/dashboard`);
       }
       
     });
-    // axios
-    //     .get("http://localhost:8080/mavenproject2/firstServiceCall")
-    //     .then((resp) => {
-    //       console.log(resp);
-    //     });
-    // axios.post("http://localhost:8080/api/user/login", user1).catch(function (error) {
-    //   if (error.response) {
-    //     // Request made and server responded
-    //     console.log(error.response.data);
-    //     setFlag(true);
-    //     setMsg(error.response.data) ;
-    //     console.log(error.response.status);
-    //     stat=error.response.status;
-    //     console.log(error.response.headers);
-    //   } else if (error.request) {
-    //     // The request was made but no response was received
-    //     console.log(error.request);
-    //   } else {
-    //     // Something happened in setting up the request that triggered an Error
-    //     console.log('Error', error.message);
-    //   }
-  
-    // })     
-    //   .then((response) => {
-    //   // if(stat===200)
-    //   console.log("statusss")
-    //   console.log(stat);
-    //   if(stat===200){
-    //     // console.log("yes")
-    //     console.log(response.data);
-    //     setUserId(response.data);
-    //     history.push(`/dashboard`); //send response.data to dashboard
-    //     // axios
-    //   //   .get("http://localhost:8080/api/posts", { headers: header })
-    //   //   .then((resp) => {
-    //   //     console.log(resp);
-    //   //   });
 
-    //   }
-    //   //check condition then if error then do this
-      
-    //   // setFlag(true);
-    //   // setMsg(response.data) ;
-      
-    //   console.log(123);
-      
-    // // const header = { "auth-token": response.data };
-      
-    // //   console.log(header);
-    // //   props.setLog(true);
-      
-    // });
-
- 
-  
   }
 
   return (

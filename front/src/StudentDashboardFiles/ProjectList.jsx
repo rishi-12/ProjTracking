@@ -16,15 +16,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProjectList(props) {
+  // const [userId,setUserId]= useContext(UserContext);
+  const userId = localStorage.getItem("user_id");
+
   const classes = useStyles();
-  console.log(props.stud_id);
-  const [userId,setUserId]= useContext(UserContext);
-  console.log(userId);
-  const stud_id=userId;
-  var projs1;
+
   const [projs,setProjs]=useState([]);
   const Fetchdata = () => {
-  axios.post("http://localhost:8080/mavenproject2/ProjectList", stud_id
+  axios.post("http://localhost:8080/mavenproject2/ProjectList", userId
     ).catch(function (error) {
 
     console.log("error");

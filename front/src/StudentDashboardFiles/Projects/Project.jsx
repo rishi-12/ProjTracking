@@ -80,9 +80,8 @@ export default function Project() {
 
   const classes = useStyles();
   const {projectId}=useParams();
-  console.log(projectId);
-  // const result = projs.filter(id => id.id===projectId);
-  // console.log(result);
+
+
   const [projDetail,setProjDetail]=useState({});
   const [cTodo,setTodoCount]=useState(0);
   const [cInProgress,setInProgressCount]=useState(0);
@@ -110,7 +109,6 @@ export default function Project() {
       
       console.log("sent");
       console.log(response.data);
-      // console.log(response.data.length);
       setProjDetail(response.data);
     });
   }
@@ -122,7 +120,7 @@ export default function Project() {
   function handleAdd(event) {
     // console.log(users);
       
-        event.preventDefault();
+        // event.preventDefault();
         const task = {
           name: event.target.name.value,
           descp: event.target.descp.value,
@@ -139,10 +137,7 @@ export default function Project() {
                   console.log(error);
             }) 
             .then((response) => {
-              // window.location.reload(false);
-              // Fetchdata();
               handleClose();
-                
           });
   }
 
