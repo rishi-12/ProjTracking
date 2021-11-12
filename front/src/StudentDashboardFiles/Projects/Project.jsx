@@ -96,31 +96,43 @@ export default function Project() {
   };
 
 
+  //Fetching Data for Pie Chart
+  const PieChartData = () => {
+        axios.post("http://localhost:8080/mavenproject2/PieChartData", projectId
+        ).catch(function (error) {
+            console.log(error);
+        }) 
+        .then((response) => {
+            setTodoCount(response.data.todo_count);
+            setInProgressCount(response.data.inprog_count);
+            setCompletedCount(response.data.comp_count)
+      });
+  }
 
+
+  //Fetching Project Details
   const Fetchdata = () => {
     axios.post("http://localhost:8080/mavenproject2/Project", projectId
       ).catch(function (error) {
   
       console.log("error");
-      console.log(error);
     
       }) 
       .then((response) => {
-      
-      console.log("sent");
-      console.log(response.data);
       setProjDetail(response.data);
     });
   }
+
     useEffect(() => {
       Fetchdata();
+      PieChartData();
   }, [])
 
 
+  //Add Task Function
   function handleAdd(event) {
-    // console.log(users);
       
-        // event.preventDefault();
+        event.preventDefault();
         const task = {
           name: event.target.name.value,
           descp: event.target.descp.value,
@@ -137,6 +149,7 @@ export default function Project() {
                   console.log(error);
             }) 
             .then((response) => {
+              window.location.reload(false);
               handleClose();
           });
   }
@@ -184,7 +197,6 @@ return(
               className={classes.button}
               size="large"
               startIcon={<UpdateIcon />}
-              // onClick={}
             >
               Update Table
             </Button>
@@ -192,7 +204,7 @@ return(
 
 
 
-          {/* Form in Modal */}
+          {/* Add Task Modal */}
           <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle style={{textAlign: 'center'}} id="form-dialog-title">Add Task</DialogTitle>
             <form onSubmit={handleAdd}>

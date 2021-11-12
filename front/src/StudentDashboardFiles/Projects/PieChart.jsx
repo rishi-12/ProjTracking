@@ -19,15 +19,12 @@ const chart_style = {
 
 
 export default function PieChart(props) {
-  const [c1,setC1]=useState(props.c1);
-  const [c2,setC2]=useState(props.c2);
-  const [c3,setC3]=useState(props.c3); 
+
   const chartData = [
-    { status: 'To Do', tasks: 3 },
-    { status: 'Completed', tasks: 4 },
-    { status: 'In Progress', tasks: 10 },
+    { status: 'To Do', tasks:props.c1 },
+    { status: 'Completed', tasks: props.c2 },
+    { status: 'In Progress', tasks: props.c3 },
   ];
-    // const { data: chartData } = this.state;
 
     return (
       <Paper style={chart_style}>

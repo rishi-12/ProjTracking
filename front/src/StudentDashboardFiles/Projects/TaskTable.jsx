@@ -67,9 +67,7 @@ export default function TaskTable(props) {
   };
 
   const [tasks,setTasks]=useState([]);
-  const [c1,setC1]=useState(0);
-  const [c2,setC2]=useState(0);
-  const [c3,setC3]=useState(0); 
+
   const body = (
     <div className={classes.paper}>
       <h2 id="simple-modal-title">Text in a modal</h2>
@@ -81,21 +79,14 @@ export default function TaskTable(props) {
   );
 
 
-
-  console.log("hel");
+  
+  //Fetching data for Task Table
   const Fetchdata = () => {
     axios.post("http://localhost:8080/mavenproject2/Task", props.projectId
       ).catch(function (error) {
-  
-      console.log("error");
       console.log(error);
-    
       }) 
       .then((response) => {
-      
-      console.log("sent");
-      console.log(response);
-      // console.log(response.data.length);
       setTasks(response.data);
     });
     
@@ -105,6 +96,15 @@ export default function TaskTable(props) {
   }, []);
   
 
+  // Task Delete Function
+  function handleDelete(task_id){
+          axios.post("http://localhost:8080/mavenproject2/DeleteTask", task_id).catch(function (error) {
+                console.log("error");        
+          }) 
+          .then((response) => {
+            window.location.reload(false);
+        });
+  }
 
 
 
@@ -142,6 +142,7 @@ export default function TaskTable(props) {
                                           color="secondary"
                                           className={classes.button}
                                           startIcon={<DeleteIcon />}
+                                          onClick = {() => handleDelete(row.id)}
                                         ></Button>
                                     </TableCell>
             </TableRow>
