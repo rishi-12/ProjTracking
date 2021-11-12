@@ -29,6 +29,8 @@ import Project from './Projects/Project';
 // import { ProgressPlugin } from 'webpack';
 import axios from "axios";
 import {UserContext} from '../UserContext';
+import ParticlesBg from 'particles-bg'
+
 // import Form from './Form.jsx';
 function Copyright() {
   return (
@@ -203,7 +205,8 @@ export default function DashboardSkel(props) {
       <main className={classes.content}>
 
         <div className={classes.appBarSpacer} />
-            
+           <ParticlesBg type='cobweb'  bg={true} num={100}/>
+
             {props.name==="dashboard" && <Dashboard name="username" /> }
             {props.name==="projectlist" && <ProjectList  /> }
             {props.name==="project" && <Project /> }

@@ -30,6 +30,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Paper } from '@material-ui/core'
+
+
+const paperStyle={padding :2,paddingTop :1,paddingBottom :1,height:'0%',width:'50%',margin:"-10px auto",}
 
 
 const useStyles = makeStyles((theme) => ({
@@ -160,14 +164,12 @@ export default function Project() {
 return(
         <Container maxWidth="lg" className={classes.container}>
 
-          <div style={div_style}>
-            <h1>{projDetail.name}</h1>
-          </div>
-          
-          <div style={div_style}>
-          <h2>{projDetail.facultyName}</h2>
-          </div>
+          <Paper elevation={10} style={paperStyle}>
+                <h1 style={{textAlign:'center'}}>{projDetail.name}</h1>
+                <h2 style={{textAlign:'center'}}>Faculty In-Charge :  {projDetail.facultyName}</h2>
+          </Paper>
 
+          <br></br>
           <div style={div_style2}>
           <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted} />
           </div>
