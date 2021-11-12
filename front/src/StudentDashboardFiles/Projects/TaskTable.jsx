@@ -14,6 +14,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
 
+
+//Form Dialog
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -56,15 +65,50 @@ function createData(task, description, status) {
 export default function TaskTable(props) {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
+  const [open, setOpen] = useState(false);
+  const [taskName,setTaskName]=useState("");
+  const [taskId,setTaskId]=useState(0);
+  const [taskDescription,setTaskDescription]=useState("");
+  // const handleOpen = ()=>{
+  //   // setTaskDet(taskDetail);
+  //   setOpen(true);
+  // };
+  function handleOpen(task_id,taskNam,taskDesc){
+    setTaskId(task_id);
+    setTaskName(taskNam);
+    setTaskDescription(taskDesc)
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
+  function handleAdd(event) {
+    // console.log(users);
+      
+        event.preventDefault();
+        const task = {
+          name: event.target.name.value,
+          descp: event.target.descp.value,
+          projectId: props.projectId,
+          taskid: taskId
+        };
+
+        const task1 =JSON.stringify(task);
+        
+          axios.post("http://localhost:8080/mavenproject2/EditTask", task1,{
+            "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            },}
+            ).catch(function (error) {
+                  console.log(error);
+            }) 
+            .then((response) => {
+              // window.location.reload(false);
+              // Fetchdata();
+              handleClose();
+                
+          });
+  }
 
   const [tasks,setTasks]=useState([]);
 
@@ -110,6 +154,38 @@ export default function TaskTable(props) {
 
   return (
     <div>
+    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle style={{textAlign: 'center'}} id="form-dialog-title">Add Task</DialogTitle>
+            <form onSubmit={handleAdd}>
+            <DialogContent>
+              <DialogContentText>
+                To add a task, fill in the details for the task and click Submit.
+              </DialogContentText>
+              <TextField
+                margin="dense"
+                id="name"
+                label="Task Name"
+                type="text"
+                fullWidth
+                defaultValue={taskName}
+                
+              />
+              <br></br> <br></br> 
+              <TextField
+                margin="dense"
+                id="descp"
+                label="Task Description"
+                type="text"
+                fullWidth
+                defaultValue={taskDescription}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">Close</Button>
+              <Button type="submit" label="Submit" color="primary">Submit</Button>
+            </DialogActions>
+            </form>
+          </Dialog>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="caption table">
         {/* <caption>A basic table example with a caption</caption> */}
@@ -133,7 +209,7 @@ export default function TaskTable(props) {
                                           color="primary"
                                           className={classes.button}
                                           startIcon={<EditIcon />}
-                                          onClick={handleOpen}
+                                          onClick={()=>handleOpen(row.id,row.task,row.description)}
                                         ></Button>
                                         
                                         {" "}
@@ -150,14 +226,6 @@ export default function TaskTable(props) {
         </TableBody>
       </Table>
     </TableContainer>
-    <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
-      </Modal>
     </div>
   );
 }
