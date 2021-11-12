@@ -18,6 +18,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import {useState} from "react";
 import { useHistory } from "react-router-dom"; 
+import { Paper } from '@material-ui/core'
+import ParticlesBg from 'particles-bg'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -49,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+const paperStyle={padding :30,paddingTop :1,height:'120%',width:'110%', margin:"100px auto"}
 
 export default function SignUp() {
   const history = useHistory();
@@ -108,6 +111,9 @@ export default function SignUp() {
 
   return (
     <Container component="main" maxWidth="xs">
+          <Paper elevation={10} style={paperStyle}>
+          <ParticlesBg type='fountain' num={3} bg={true} />
+
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -242,6 +248,7 @@ export default function SignUp() {
           </div>
         </Fade>
       </Modal>
+      </Paper>
 
     </Container>
   );

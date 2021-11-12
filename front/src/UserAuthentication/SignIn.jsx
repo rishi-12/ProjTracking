@@ -21,6 +21,8 @@ import axios from "axios";
 import  Modal  from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import ParticlesBg from 'particles-bg'
+import { Paper } from '@material-ui/core'
 
 import {UserContext} from '../UserContext';
 
@@ -59,6 +61,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
+const paperStyle={padding :30,paddingTop :1,height:'120%',width:'110%', margin:"100px auto"}
 
 export default function SignIn(props) {
   const classes = useStyles();
@@ -113,6 +117,11 @@ export default function SignIn(props) {
   return (
     // <div style={divstyle}>
     <Container  component="main" maxWidth="xs">
+    <Paper elevation={10} style={paperStyle}>
+
+    {/* <ParticlesBg type='fountain' bg={true} /> */}
+    <ParticlesBg type='fountain' num={3} bg={true} />
+
     <CssBaseline />
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
@@ -159,17 +168,18 @@ export default function SignIn(props) {
         >
           Sign In
         </Button>
-        <Grid container>
-          <Grid item xs>
+        <Grid container justifyContent="flex-end">
+          {/* <Grid item xs>
             <Link href="#" variant="body2">
               Forgot password?
             </Link>
-          </Grid>
-          <Grid item>
-            <Link href="/SignUp" variant="body2">
+          </Grid> */}
+          <Grid item >
+            <Link href="/SignUp" variant="body2" >
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>
+          <br></br><br></br>
           <Grid item>
             <Link href="/facsignin" variant="body2">
               {"If you are a faculty, click here to sign in"}
@@ -200,6 +210,7 @@ export default function SignIn(props) {
           </div>
         </Fade>
       </Modal>
+      </Paper>
   </Container>
   // </div>
     
