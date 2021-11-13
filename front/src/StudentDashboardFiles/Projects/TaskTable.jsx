@@ -84,8 +84,6 @@ export default function TaskTable(props) {
   };
   function handleAdd(event) {
     // console.log(users);
-      
-        event.preventDefault();
         const task = {
           name: event.target.name.value,
           descp: event.target.descp.value,
@@ -103,10 +101,8 @@ export default function TaskTable(props) {
                   console.log(error);
             }) 
             .then((response) => {
-              // window.location.reload(false);
-              // Fetchdata();
-              handleClose();
-                
+              window.location.reload(false);
+              handleClose();      
           });
   }
 
@@ -155,11 +151,11 @@ export default function TaskTable(props) {
   return (
     <div>
     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle style={{textAlign: 'center'}} id="form-dialog-title">Add Task</DialogTitle>
+            <DialogTitle style={{textAlign: 'center'}} id="form-dialog-title">Edit Task Details</DialogTitle>
             <form onSubmit={handleAdd}>
             <DialogContent>
               <DialogContentText>
-                To add a task, fill in the details for the task and click Submit.
+                To edit a task, change in the details for the task and click Submit.
               </DialogContentText>
               <TextField
                 margin="dense"
@@ -186,6 +182,7 @@ export default function TaskTable(props) {
             </DialogActions>
             </form>
           </Dialog>
+
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="caption table">
         {/* <caption>A basic table example with a caption</caption> */}

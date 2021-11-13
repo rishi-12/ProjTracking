@@ -30,7 +30,7 @@ import Project from './Projects/Project';
 import axios from "axios";
 import {UserContext} from '../UserContext';
 import ParticlesBg from 'particles-bg'
-
+import Settings from './Settings';
 // import Form from './Form.jsx';
 function Copyright() {
   return (
@@ -210,6 +210,7 @@ export default function DashboardSkel(props) {
             {props.name==="dashboard" && <Dashboard name="username" /> }
             {props.name==="projectlist" && <ProjectList  /> }
             {props.name==="project" && <Project /> }
+            {props.name==="settings" && <Settings /> }
             {/* {props.name==="form" && <Form /> } */}
       </main>
 

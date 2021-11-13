@@ -31,7 +31,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Paper } from '@material-ui/core'
-
+import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 
 const paperStyle={padding :2,paddingTop :1,paddingBottom :1,height:'0%',width:'50%',margin:"-10px auto",}
 
@@ -164,10 +164,23 @@ export default function Project() {
 return(
         <Container maxWidth="lg" className={classes.container}>
 
-          <Paper elevation={10} style={paperStyle}>
+          <Paper  style={paperStyle}>
                 <h1 style={{textAlign:'center'}}>{projDetail.name}</h1>
                 <h2 style={{textAlign:'center'}}>Faculty In-Charge :  {projDetail.facultyName}</h2>
           </Paper>
+
+          <Box textAlign='right'>
+          <Button
+            variant="contained"
+            color="primary"
+            // className={classes.button}
+            startIcon={<InsertDriveFileIcon />}
+            style = {{marginTop:'-15%'}}
+          >
+            View Files 
+          </Button>
+          </Box>
+
 
           <br></br>
           <div style={div_style2}>
