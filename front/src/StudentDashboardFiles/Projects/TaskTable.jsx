@@ -69,14 +69,17 @@ export default function TaskTable(props) {
   const [taskName,setTaskName]=useState("");
   const [taskId,setTaskId]=useState(0);
   const [taskDescription,setTaskDescription]=useState("");
+  const [taskStatus,setTaskStatus]=useState("");
+
   // const handleOpen = ()=>{
   //   // setTaskDet(taskDetail);
   //   setOpen(true);
   // };
-  function handleOpen(task_id,taskNam,taskDesc){
+  function handleOpen(task_id,taskNam,taskDesc,taskStat){
     setTaskId(task_id);
     setTaskName(taskNam);
-    setTaskDescription(taskDesc)
+    setTaskDescription(taskDesc);
+    setTaskStatus(taskStat);
     setOpen(true);
   };
   const handleClose = () => {
@@ -88,11 +91,14 @@ export default function TaskTable(props) {
           name: event.target.name.value,
           descp: event.target.descp.value,
           projectId: props.projectId,
+          stat: event.target.position.value,
           taskid: taskId
         };
+        console.log(task);
+        console.log(event.target.position.value);
 
         const task1 =JSON.stringify(task);
-        
+        console.log(task);
           axios.post("http://localhost:8080/mavenproject2/EditTask", task1,{
             "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -104,6 +110,7 @@ export default function TaskTable(props) {
               window.location.reload(false);
               handleClose();      
           });
+          // event.preventDefault();
   }
 
   const [tasks,setTasks]=useState([]);
@@ -175,6 +182,7 @@ export default function TaskTable(props) {
                 fullWidth
                 defaultValue={taskDescription}
               />
+              <FormControlLabelPlacement status={taskStatus} />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">Close</Button>
@@ -199,14 +207,14 @@ export default function TaskTable(props) {
             <TableRow key={row.task}>
               <TableCell component="th" align="center" scope="row">{row.task}</TableCell>
               <TableCell align="center">{row.description}</TableCell>
-              <TableCell align="center"><FormControlLabelPlacement status={row.status} /></TableCell>
+              <TableCell align="center">{row.status}</TableCell>
               <TableCell align="center">
                                         <Button
                                           variant="contained"
                                           color="primary"
                                           className={classes.button}
                                           startIcon={<EditIcon />}
-                                          onClick={()=>handleOpen(row.id,row.task,row.description)}
+                                          onClick={()=>handleOpen(row.id,row.task,row.description,row.status)}
                                         ></Button>
                                         
                                         {" "}
