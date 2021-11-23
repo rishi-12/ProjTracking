@@ -23,7 +23,7 @@ import { mainListItems } from './FaclistItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
-import Dashboard from './Dashboard';
+import Dashboard from './FacDashboard';
  import FacProjectList from './FacProjectList';
 import Project from './Projects/FacProject';
 import Form from './Form.jsx';
@@ -32,6 +32,11 @@ import axios from "axios";
 import {UserContext} from '../UserContext';
 import UpdateProj from './UpdateProj';
 import FacProject from "./Projects/FacProject.jsx";
+import FacDashboard from "./FacDashboard.jsx";
+import FacProfilePage from './FacProfilePage';
+import ParticlesBg from 'particles-bg'
+import FacFeedback from './FacFeedback';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -213,7 +218,7 @@ export default function FacDashboardSkel(props) {
       <main className={classes.content}>
 
         <div className={classes.appBarSpacer} />
-            
+        <ParticlesBg type='cobweb'  bg={true} num={100}/>
             {/* {props.name==="dashboard" && <Dashboard name="username" /> } */}
             {/* {props.name==="projectlist" && <ProjectList /> } */}
             {props.name==="project" && <Project /> }
@@ -221,6 +226,10 @@ export default function FacDashboardSkel(props) {
             {props.name==="updateproj" && <UpdateProj /> }
             {props.name==="facprojlist" && <FacProjectList /> }
             {props.name==="facproject" && <FacProject /> }
+            {props.name=="facultyDashboard" && <FacDashboard />}
+            {props.name=="facprofilepage" && <FacProfilePage />}
+            {props.name=="facfeedbackpage" && <FacFeedback />}
+            
 
       </main>
 

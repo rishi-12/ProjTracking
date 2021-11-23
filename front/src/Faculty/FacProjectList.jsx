@@ -16,29 +16,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProjectList(props) {
   const classes = useStyles();
+  const fac_id=localStorage.getItem("fac_id");
   // const stud_id="1";
   var projs1;
-  //const [projs,setProjs]=useState([]);
-//   const Fetchdata = () => {
-//   axios.post("http://localhost:8080/mavenproject2/ProjectList", stud_id
-//     ).catch(function (error) {
+  const [projs,setProjs]=useState([]);
+  const Fetchdata = () => {
+  axios.post("http://localhost:8080/mavenproject2/FacProjList", fac_id
+    ).catch(function (error) {
 
-//     console.log("error");
-//     console.log(error);
+    console.log("error");
+    console.log(error);
   
-//     }) 
-//     .then((response) => {
+    }) 
+    .then((response) => {
     
-//     console.log("sent");
-//     console.log(response.data);
-//     console.log(response.data.length);
-//     setProjs(response.data);
-//   });
-// }
-//   useEffect(() => {
-//     Fetchdata();
-// }, [])
-  const projs=[{id:'1r3fwac',name:"B.Tech Project Tracking Dashboard",teamsize: 5},{id:'1r3saa',name:"Alumuni Portal",teamsize: 4},{id:'23gvrew',name:"Course Website",teamsize: 6},{id:'32efwewc',name:"Student Profile",teamsize: 5},{id:'45rgav',name:"Workshop Management",teamsize: 4}];
+    console.log("sent");
+    console.log(response.data);
+    console.log(response.data.length);
+    setProjs(response.data);
+  });
+}
+  useEffect(() => {
+    Fetchdata();
+}, [])
+  //const projs=[{id:'1r3fwac',name:"B.Tech Project Tracking Dashboard",teamsize: 5},{id:'1r3saa',name:"Alumuni Portal",teamsize: 4},{id:'23gvrew',name:"Course Website",teamsize: 6},{id:'32efwewc',name:"Student Profile",teamsize: 5},{id:'45rgav',name:"Workshop Management",teamsize: 4}];
   console.log("hello");
   // console.log(props.projs);
   // const projs2=projs1  

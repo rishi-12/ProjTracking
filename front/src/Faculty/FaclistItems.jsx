@@ -14,6 +14,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import {Link} from 'react-router-dom'
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import UpdateIcon from '@material-ui/icons/Update';
+import FeedbackIcon from '@material-ui/icons/Feedback';
 
 export function handle_projectclick(){
   window.open("/projects");
@@ -23,7 +26,7 @@ export function handle_projectclick(){
 export const mainListItems = (
   <div>
 
-    <ListItem button component={Link} to="/addproject">
+    <ListItem button component={Link} to="/fachome">
       <ListItemIcon>
         <HomeIcon />
       </ListItemIcon>
@@ -39,24 +42,33 @@ export const mainListItems = (
 
     <ListItem button component={Link} to="/addproject">
       <ListItemIcon>
-        <ListAltIcon />
+        <AddCircleIcon />
       </ListItemIcon>
       <ListItemText primary="Create project" />
     </ListItem>
 
     <ListItem button  component={Link} to="/updateproject">
       <ListItemIcon>
-        <SettingsIcon />
+        <UpdateIcon />
       </ListItemIcon>
       <ListItemText primary="Update project" />
     </ListItem>
     
-    <ListItem button>
+    <ListItem button component={Link} to="/facultyprofilepage">
       <ListItemIcon>
         {/* <LayersIcon /> */}
         <AccountCircleIcon/>
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItem>
+
+    <ListItem button component={Link} to="/facultyfeedback">
+      <ListItemIcon>
+        {/* <LayersIcon /> */}
+        <FeedbackIcon/>
+      </ListItemIcon>
+      <ListItemText primary="Feedback" />
+    </ListItem>
+
   </div>
 );

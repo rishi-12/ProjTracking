@@ -21,6 +21,8 @@ import  Modal  from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import {FacContext} from './FacContext';
+import ParticlesBg from 'particles-bg';
+import { Paper } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -70,7 +72,7 @@ const divstyle={
     },
   }));
   
-
+const paperStyle={padding :30,paddingTop :1,height:'100%',width:'110%', margin:"100px auto"}
 export default function FacSignIn(props)
 {
   const classes = useStyles();
@@ -120,14 +122,16 @@ export default function FacSignIn(props)
 
       console.log("sent");
       console.log(response);
-      if(response.data==='Success'){
+      if(response.data==='False'){
         // console.log(user1.facultyid+' sfasd as fda')
         
         // console.log(facId+' this is facid in facsign')
-        history.push(`/addproject`)
+        setShowit(true);
+        
       }
       else{
-        setShowit(true);
+        localStorage.setItem("fac_id", user1.facultyid);
+        history.push(`/fachome`);
       }
       
     });
@@ -138,6 +142,8 @@ export default function FacSignIn(props)
     return (
         <Container  component="main" maxWidth="xs">
         {/* <h1 style={{textAlign:'center'}}>Faculty sign in page</h1> */}
+        <Paper elevation={10} style={paperStyle}>
+        <ParticlesBg type='fountain' num={3} bg={true} />
     <CssBaseline />
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
@@ -196,12 +202,13 @@ export default function FacSignIn(props)
           Sign In
         </Button>
         <Grid container>
+        {/*
           <Grid item xs>
             <Link href="#" variant="body2">
               Forgot password?
             </Link>
           </Grid>
-          {/* <Grid item>
+           <Grid item>
             <Link href="/SignUp" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
@@ -233,6 +240,7 @@ export default function FacSignIn(props)
           </div>
         </Fade>
       </Modal>
+      </Paper>
   </Container>
   // </div>
     

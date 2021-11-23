@@ -11,7 +11,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom"; 
 import {FacContext} from './FacContext';
 import { useContext } from 'react';
-
+import { Paper } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
+const paperStyle={padding :30,paddingTop :1,height:'100%',width:'110%', margin:"100px auto"}
 export default function Form(){
   const classes = useStyles();
   const history = useHistory();
@@ -79,6 +79,7 @@ export default function Form(){
 
   return (
     <Container  component="main" maxWidth="xs">
+    <Paper elevation={10} style={paperStyle}>
         {/* <h1 style={{textAlign:'center'}}>Faculty sign in page</h1> */}
     <CssBaseline />
     <div className={classes.paper}>
@@ -122,6 +123,7 @@ export default function Form(){
         </Button>
     </form> 
     </div>
+    </Paper>
   </Container>
   );
 }
