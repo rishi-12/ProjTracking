@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
-
+import SimpleSelect from './SimpleSelect';
 
 //Form Dialog
 import TextField from '@material-ui/core/TextField';
@@ -70,16 +70,19 @@ export default function TaskTable(props) {
   const [taskId,setTaskId]=useState(0);
   const [taskDescription,setTaskDescription]=useState("");
   const [taskStatus,setTaskStatus]=useState("");
-
+  const [taskAssignStudName,setTaskToName]=useState("None");
+  const [taskAssignStudId,setTasktoStudId]=useState(0);
   // const handleOpen = ()=>{
   //   // setTaskDet(taskDetail);
   //   setOpen(true);
   // };
-  function handleOpen(task_id,taskNam,taskDesc,taskStat){
+  function handleOpen(task_id,taskNam,taskDesc,taskStat,taskStudName,taskStudId){
     setTaskId(task_id);
     setTaskName(taskNam);
     setTaskDescription(taskDesc);
     setTaskStatus(taskStat);
+    setTaskToName(taskStudName);
+    setTasktoStudId(taskStudId);
     setOpen(true);
   };
   const handleClose = () => {
@@ -92,10 +95,11 @@ export default function TaskTable(props) {
           descp: event.target.descp.value,
           projectId: props.projectId,
           stat: event.target.position.value,
+          assignedToStuId: event.target.selectStudent.value,
           taskid: taskId
         };
         console.log(task);
-        console.log(event.target.position.value);
+        console.log(event.target.selectStudent.value);
 
         const task1 =JSON.stringify(task);
         console.log(task);
@@ -107,6 +111,7 @@ export default function TaskTable(props) {
                   console.log(error);
             }) 
             .then((response) => {
+              
               window.location.reload(false);
               handleClose();      
           });
@@ -135,6 +140,7 @@ export default function TaskTable(props) {
       }) 
       .then((response) => {
       setTasks(response.data);
+      // console.log(tasks);
     });
     
   }
@@ -157,7 +163,7 @@ export default function TaskTable(props) {
 
   return (
     <div>
-    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+    {open && <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle style={{textAlign: 'center'}} id="form-dialog-title">Edit Task Details</DialogTitle>
             <form onSubmit={handleAdd}>
             <DialogContent>
@@ -182,7 +188,10 @@ export default function TaskTable(props) {
                 fullWidth
                 defaultValue={taskDescription}
               />
+              <br /><br />
               <FormControlLabelPlacement status={taskStatus} />
+              <br /><br />
+              <SimpleSelect defVal={taskAssignStudId} defName={taskAssignStudName}  projMembers={props.projMembers}  />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">Close</Button>
@@ -190,7 +199,7 @@ export default function TaskTable(props) {
             </DialogActions>
             </form>
           </Dialog>
-
+    }
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="caption table">
         {/* <caption>A basic table example with a caption</caption> */}
@@ -199,6 +208,7 @@ export default function TaskTable(props) {
             <TableCell align="center">Task</TableCell>
             <TableCell align="center">Description</TableCell>
             <TableCell align="center">Status</TableCell>
+            <TableCell align="center">AssignTask</TableCell>
             <TableCell align="center"></TableCell>
           </TableRow>
         </TableHead>
@@ -208,13 +218,14 @@ export default function TaskTable(props) {
               <TableCell component="th" align="center" scope="row">{row.task}</TableCell>
               <TableCell align="center">{row.description}</TableCell>
               <TableCell align="center">{row.status}</TableCell>
+              <TableCell align="center">{row.studAssigned}</TableCell>
               <TableCell align="center">
                                         <Button
                                           variant="contained"
                                           color="primary"
                                           className={classes.button}
                                           startIcon={<EditIcon />}
-                                          onClick={()=>handleOpen(row.id,row.task,row.description,row.status)}
+                                          onClick={()=>handleOpen(row.id,row.task,row.description,row.status,row.studAssigned,row.studId)}
                                         ></Button>
                                         
                                         {" "}
