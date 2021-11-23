@@ -208,7 +208,7 @@ export default function TaskTable(props) {
             <TableCell align="center">Task</TableCell>
             <TableCell align="center">Description</TableCell>
             <TableCell align="center">Status</TableCell>
-            <TableCell align="center">AssignTask</TableCell>
+            <TableCell align="center">Assigned Task</TableCell>
             <TableCell align="center"></TableCell>
           </TableRow>
         </TableHead>

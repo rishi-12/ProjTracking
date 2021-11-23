@@ -12,6 +12,8 @@ import Divider from '@material-ui/core/Divider';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import { useHistory } from "react-router-dom"; 
+
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import ProjCard from "./Projects/ProjCard";
@@ -84,6 +86,7 @@ export default function Project() {
 
   const classes = useStyles();
   const {projectId}=useParams();
+  const history = useHistory();
 
 
   const [projDetail,setProjDetail]=useState({});
@@ -175,7 +178,10 @@ export default function Project() {
   }
 
 
-
+  function handlefiles(){
+    history.push(``);
+    history.push(`files/`+projectId);   
+  }
 
 return(
         <Container maxWidth="lg" className={classes.container}>
@@ -192,6 +198,8 @@ return(
             // className={classes.button}
             startIcon={<InsertDriveFileIcon />}
             style = {{marginTop:'-15%'}}
+            onClick = {handlefiles}
+
           >
             View Files 
           </Button>
@@ -220,19 +228,6 @@ return(
           <br></br>
           <TaskTable projectId={projectId} projMembers={projMembers} setTodoCount={setTodoCount} setInProgressCount={setInProgressCount} setCompletedCount={setCompletedCount} />
           <br></br>
-          
-          <Box textAlign='center'>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              size="large"
-              startIcon={<UpdateIcon />}
-            >
-              Update Table
-            </Button>
-          </Box>
-
 
 
           {/* Add Task Modal */}

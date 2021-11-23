@@ -54,6 +54,16 @@ export default function Settings(props) {
                         variant="outlined"
                         margin="normal"
                         fullWidth
+                        id="oldpass"
+                        label="Current Password"
+                        name="oldpass"
+                        autoComplete="oldpass"
+                        autoFocus
+                      />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
                         id="newpass"
                         label="New Password"
                         name="newpass"
