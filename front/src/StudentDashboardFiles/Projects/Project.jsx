@@ -92,6 +92,9 @@ export default function Project() {
   const [cCompleted,setCompletedCount]=useState(0); 
 
   const [open, setOpen] = React.useState(false);
+  const [projMembers,setProjectMembers]=useState([]);
+
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -127,9 +130,22 @@ export default function Project() {
     });
   }
 
+  const getProjMembers = () =>{
+    axios.post("http://localhost:8080/mavenproject2/getProjectMembers",projectId)
+    .catch(function (error) {
+    
+      console.log("error");
+      }) 
+      .then((response) => {
+        setProjectMembers(response.data);
+        console.log(response.data);
+    });
+  }
+
     useEffect(() => {
       Fetchdata();
       PieChartData();
+      getProjMembers(); 
   }, [])
 
 
@@ -202,7 +218,7 @@ return(
           </Box>
 
           <br></br>
-          <TaskTable projectId={projectId} setTodoCount={setTodoCount} setInProgressCount={setInProgressCount} setCompletedCount={setCompletedCount} />
+          <TaskTable projectId={projectId} projMembers={projMembers} setTodoCount={setTodoCount} setInProgressCount={setInProgressCount} setCompletedCount={setCompletedCount} />
           <br></br>
           
           <Box textAlign='center'>
