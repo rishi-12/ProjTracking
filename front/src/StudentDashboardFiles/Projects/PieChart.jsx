@@ -29,6 +29,8 @@ export default function PieChart(props) {
     { status: 'In Progress', tasks: props.c3 },
   ];
 
+
+  console.log(chartData)
     return (
       <Paper style={chart_style}>
 
@@ -41,8 +43,8 @@ export default function PieChart(props) {
         data={[
           ['Status', 'Number'],
           ['To Do', parseInt(props.c1)],
-          ['Completed', parseInt(props.c2)],
-          ['In Progress', parseInt(props.c3)],
+          ['In Progress', parseInt(props.c2)],
+          ['Completed', parseInt(props.c3)],
         ]}
         options={{
           title: 'Progress Report',
