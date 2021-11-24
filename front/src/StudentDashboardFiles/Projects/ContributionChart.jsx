@@ -15,10 +15,14 @@ import { Chart } from "react-google-charts";
 const chart_style = {
   height: '50%',
   width : '50%',
-  marginLeft: '5%',
+  marginLeft: '20%',
   marginTop: '0%',
 
 };
+
+
+
+
 
 
 
@@ -28,8 +32,8 @@ export default function PieChart(props) {
     return (
       <Paper style={chart_style} elevation={1}>
           <Chart
-              width={'500px'}
-              height={'300px'}
+              width={'750px'}
+              height={'400px'}
               chartType="Bar"
               loader={<div>Loading Chart</div>}
               data={props.data}

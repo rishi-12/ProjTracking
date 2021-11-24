@@ -79,7 +79,7 @@ const div_style2 = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '92%',
+  width: '60%',
 }
 //
 
