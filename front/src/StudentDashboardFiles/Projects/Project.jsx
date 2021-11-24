@@ -12,6 +12,7 @@ import Divider from '@material-ui/core/Divider';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import { Chart } from "react-google-charts";
 import { useHistory } from "react-router-dom"; 
 
 // import Chart from './Chart';
@@ -19,6 +20,8 @@ import { useHistory } from "react-router-dom";
 // import ProjCard from "./Projects/ProjCard";
 // import Card from '@material-ui/core/Card';
 import PieChart from './PieChart';
+import ContributionChart from './ContributionChart';
+
 import { useParams } from 'react-router-dom';
 import TaskTable from './TaskTable';
 import AddIcon from '@material-ui/icons/Add';
@@ -76,9 +79,20 @@ const div_style2 = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '83%',
+  width: '92%',
 }
 //
+
+const div_style3 = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  marginLeft: '2%',
+  padding: '0%',
+}
+
+
 
 
 
@@ -97,6 +111,7 @@ export default function Project() {
   const [open, setOpen] = React.useState(false);
   const [projMembers,setProjectMembers]=useState([]);
 
+  const [chartData,setChartData]=useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -132,6 +147,22 @@ export default function Project() {
       setProjDetail(response.data);
     });
   }
+  
+  //Fetching Contribution bar chart data
+
+  const getContributionChartData = () =>{
+    axios.post("http://localhost:8080/mavenproject2/getContributionChartData", projectId
+      ).catch(function (error) {
+  
+      console.log("error");
+    
+      }) 
+      .then((response) => {
+      setChartData(response.data);
+    });
+
+  }
+
 
   const getProjMembers = () =>{
     axios.post("http://localhost:8080/mavenproject2/getProjectMembers",projectId)
@@ -149,6 +180,7 @@ export default function Project() {
       Fetchdata();
       PieChartData();
       getProjMembers(); 
+      getContributionChartData();
   }, [])
 
 
@@ -199,7 +231,6 @@ return(
             startIcon={<InsertDriveFileIcon />}
             style = {{marginTop:'-15%'}}
             onClick = {handlefiles}
-
           >
             View Files 
           </Button>
@@ -208,8 +239,10 @@ return(
 
           <br></br>
           <div style={div_style2}>
-          <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted} />
+            <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted}  />
+            <ContributionChart data={chartData}/>
           </div>
+
 
           <br></br>
 
