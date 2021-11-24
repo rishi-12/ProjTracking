@@ -217,7 +217,7 @@ export default function TaskTable(props) {
             <TableRow key={row.task}>
               <TableCell component="th" align="center" scope="row">{row.task}</TableCell>
               <TableCell align="center">{row.description}</TableCell>
-              <TableCell align="center">{row.status}</TableCell>
+              <TableCell align="center">{(row.status==='todo' ? 'ToDo':(row.status==='inprog' ? 'InProgress' : 'Completed')) }</TableCell>
               <TableCell align="center">{row.studAssigned}</TableCell>
               <TableCell align="center">
                                         <Button

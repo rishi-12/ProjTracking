@@ -12,6 +12,7 @@ import Divider from '@material-ui/core/Divider';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import { Chart } from "react-google-charts";
 import { useHistory } from "react-router-dom"; 
 
 // import Chart from './Chart';
@@ -97,6 +98,7 @@ export default function Project() {
   const [open, setOpen] = React.useState(false);
   const [projMembers,setProjectMembers]=useState([]);
 
+  const [chartData,setChartData]=useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -132,6 +134,22 @@ export default function Project() {
       setProjDetail(response.data);
     });
   }
+  
+  //Fetching Contribution bar chart data
+
+  const getContributionChartData = () =>{
+    axios.post("http://localhost:8080/mavenproject2/getContributionChartData", projectId
+      ).catch(function (error) {
+  
+      console.log("error");
+    
+      }) 
+      .then((response) => {
+      setChartData(response.data);
+    });
+
+  }
+
 
   const getProjMembers = () =>{
     axios.post("http://localhost:8080/mavenproject2/getProjectMembers",projectId)
@@ -149,6 +167,7 @@ export default function Project() {
       Fetchdata();
       PieChartData();
       getProjMembers(); 
+      getContributionChartData();
   }, [])
 
 
@@ -199,7 +218,6 @@ return(
             startIcon={<InsertDriveFileIcon />}
             style = {{marginTop:'-15%'}}
             onClick = {handlefiles}
-
           >
             View Files 
           </Button>
@@ -211,6 +229,29 @@ return(
           <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted} />
           </div>
 
+          <Chart
+                width={'500px'}
+              height={'300px'}
+              chartType="Bar"
+              loader={<div>Loading Chart</div>}
+              data={chartData}
+              // [
+              //   ['Project Member Name', 'ToDo', 'InProgress', 'Completed'],
+              //   ['2014', 1000, 400, 200],
+              //   ['2015', 1170, 460, 250],
+              //   ['2016', 660, 1120, 300],
+              //   ['2017', 1030, 540, 350],
+              // ]
+              options={{
+                // Material design options
+                chart: {
+                  title: 'Student Contributions',
+                  subtitle: 'No of Task ToDo ,In Progress, Completed for each student ',
+                },
+              }}
+              // For tests
+              rootProps={{ 'data-testid': '2' }}
+            />
           <br></br>
 
           <Box textAlign='left'>
