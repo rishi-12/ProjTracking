@@ -20,6 +20,8 @@ import { useHistory } from "react-router-dom";
 // import ProjCard from "./Projects/ProjCard";
 // import Card from '@material-ui/core/Card';
 import PieChart from './PieChart';
+import ContributionChart from './ContributionChart';
+
 import { useParams } from 'react-router-dom';
 import TaskTable from './TaskTable';
 import AddIcon from '@material-ui/icons/Add';
@@ -80,6 +82,17 @@ const div_style2 = {
   width: '83%',
 }
 //
+
+const div_style3 = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  marginLeft: '2%',
+  padding: '0%',
+}
+
+
 
 
 
@@ -226,32 +239,11 @@ return(
 
           <br></br>
           <div style={div_style2}>
-          <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted} />
+          <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted}  />
+          <ContributionChart data={chartData}/>
           </div>
 
-          <Chart
-                width={'500px'}
-              height={'300px'}
-              chartType="Bar"
-              loader={<div>Loading Chart</div>}
-              data={chartData}
-              // [
-              //   ['Project Member Name', 'ToDo', 'InProgress', 'Completed'],
-              //   ['2014', 1000, 400, 200],
-              //   ['2015', 1170, 460, 250],
-              //   ['2016', 660, 1120, 300],
-              //   ['2017', 1030, 540, 350],
-              // ]
-              options={{
-                // Material design options
-                chart: {
-                  title: 'Student Contributions',
-                  subtitle: 'No of Task ToDo ,In Progress, Completed for each student ',
-                },
-              }}
-              // For tests
-              rootProps={{ 'data-testid': '2' }}
-            />
+
           <br></br>
 
           <Box textAlign='left'>
