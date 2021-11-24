@@ -55,7 +55,7 @@ export default function TaskTable(props) {
       console.log(error);
       }) 
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         setTasks(response.data);
     });
     
@@ -73,7 +73,8 @@ export default function TaskTable(props) {
             <TableCell align="center">Task</TableCell>
             <TableCell align="center">Description</TableCell>
             <TableCell align="center">Status</TableCell>
-            <TableCell align="center"></TableCell>
+            <TableCell align="center">Assigned Task</TableCell>
+            {/* <TableCell align="center"></TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -81,14 +82,9 @@ export default function TaskTable(props) {
             <TableRow key={row.task}>
               <TableCell component="th" align="center" scope="row">{row.task}</TableCell>
               <TableCell align="center">{row.description}</TableCell>
-              <TableCell align="center"><FormControlLabelPlacement /></TableCell>
-              <TableCell align="center"><Button
-                                          variant="contained"
-                                          color="secondary"
-                                          className={classes.button}
-                                          startIcon={<DeleteIcon />}
-                                        ></Button>
-                                    </TableCell>
+              <TableCell align="center">{row.status}</TableCell>
+              <TableCell align="center">{row.studAssigned}</TableCell>
+              {/* <TableCell align="center"></TableCell> */}
             </TableRow>
           ))}
         </TableBody>

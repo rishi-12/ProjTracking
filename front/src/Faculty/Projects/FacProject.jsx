@@ -18,8 +18,7 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems } from '../FaclistItems';
+import { useHistory } from "react-router-dom"; 
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import ProjCard from "./Projects/ProjCard";
@@ -28,6 +27,12 @@ import PieChart from './PieChart';
 import { useParams } from 'react-router-dom';
 import TaskTable from './TaskTable'
 import AddIcon from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 const paperStyle={padding :2,paddingTop :1,paddingBottom :1,height:'0%',width:'50%',margin:"-10px auto",}
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +65,7 @@ const div_style2 = {
 export default function FacProject() {
   const classes = useStyles();
   const {projectId}=useParams();
-
+  const history = useHistory();
 
   const [projDetail,setProjDetail]=useState({});
   const [cTodo,setTodoCount]=useState(0);
@@ -68,6 +73,7 @@ export default function FacProject() {
   const [cCompleted,setCompletedCount]=useState(0); 
 
   const [open, setOpen] = React.useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -75,6 +81,12 @@ export default function FacProject() {
     setOpen(false);
   };
 
+  // function handleClick(event){
+  //   event.preventDefault();
+  //   console.log("Added student");
+  // }
+
+  
   //Fetching Data for Pie Chart
   const PieChartData = () => {
     axios.post("http://localhost:8080/mavenproject2/PieChartData", projectId
@@ -87,6 +99,7 @@ export default function FacProject() {
         setCompletedCount(response.data.comp_count)
   });
 }
+
 
 
 //Fetching Project Details
@@ -106,6 +119,30 @@ useEffect(() => {
   Fetchdata();
   PieChartData();
 }, [])
+
+//Add Student Function
+function handleAdd(event) {
+  console.log("aefaef");
+  event.preventDefault();
+  const stud = {
+    email: event.target.email.value,
+    projid: event.target.projid.value
+  };
+  console.log(stud);
+  const stud1 =JSON.stringify(stud);
+  
+    axios.post("http://localhost:8080/mavenproject2/AddStudent", stud1,{
+      "headers": {
+      "content-type": "application/x-www-form-urlencoded",
+      },}
+      ).catch(function (error) {
+            console.log(error);
+      }) 
+      .then((response) => {
+        // window.location.reload(false);
+        handleClose();
+    });
+}
   // console.log(projectId);
   // const result = projs.filter(id => id.id===projectId);
   // console.log(result);
@@ -125,19 +162,53 @@ return(
 
           <br></br>
           </div>
+          <Box textAlign="left">
           <Button
         variant="contained"
         color="secondary"
         className={classes.button}
         startIcon={<AddIcon />}
+        onClick={handleClickOpen}
       >
         Add student
       </Button>
+      </Box>
     
         
           <TaskTable projectId={projectId} setTodoCount={setTodoCount} setInProgressCount={setInProgressCount} setCompletedCount={setCompletedCount} />
           <br></br>
-          <TaskTable/>
+          {/* <TaskTable/> */}
+
+          {/* Add Student Modal */}
+          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle style={{textAlign: 'center'}} id="form-dialog-title">Add Student</DialogTitle>
+            <form onSubmit={handleAdd}>
+            <DialogContent>
+              <DialogContentText>
+                To add a student, fill in the project id and email of the student and click Submit.
+              </DialogContentText>
+              <TextField
+                margin="dense"
+                id="projid"
+                label="Project ID"
+                type="text"
+                fullWidth
+              />
+              <br></br> <br></br> 
+              <TextField
+                margin="dense"
+                id="email"
+                label="Student email"
+                type="text"
+                fullWidth
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">Close</Button>
+              <Button type="submit" label="Submit" color="primary">Submit</Button>
+            </DialogActions>
+            </form>
+          </Dialog>
         </Container>
   );
 }

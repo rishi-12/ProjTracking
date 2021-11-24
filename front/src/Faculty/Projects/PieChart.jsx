@@ -19,9 +19,9 @@ const chart_style = {
 
 export default function PieChart(props) {
   const chartData = [
-    { status: 'To Do', tasks: 8 },
-    { status: 'Completed', tasks: 15 },
-    { status: 'In Progress', tasks: 7 },
+    { status: 'To Do', tasks: props.c1  },
+    { status: 'Completed', tasks: props.c2 },
+    { status: 'In Progress', tasks: props.c3 },
   ];
     // const { data: chartData } = this.state;
 
