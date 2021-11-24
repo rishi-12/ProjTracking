@@ -13,10 +13,11 @@ import { Chart } from "react-google-charts";
 
 
 const chart_style = {
-  height: '20%',
+  height: '50%',
   width : '50%',
-  marginLeft: '10%',
+  marginLeft: '5%',
   marginTop: '0%',
+
 };
 
 
@@ -25,11 +26,9 @@ export default function PieChart(props) {
 
 
     return (
-      <Paper style={chart_style}>
-
-
+      <Paper style={chart_style} elevation={1}>
           <Chart
-                width={'500px'}
+              width={'500px'}
               height={'300px'}
               chartType="Bar"
               loader={<div>Loading Chart</div>}
@@ -38,7 +37,7 @@ export default function PieChart(props) {
                 // Material design options
                 chart: {
                   title: 'Student Contributions',
-                  subtitle: 'No of Task ToDo ,In Progress, Completed for each student ',
+                  subtitle: 'Count of status of tasks for each student ',
                 },
               }}
               // For tests

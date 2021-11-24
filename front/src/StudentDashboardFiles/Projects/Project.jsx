@@ -79,7 +79,7 @@ const div_style2 = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '83%',
+  width: '92%',
 }
 //
 
@@ -239,8 +239,8 @@ return(
 
           <br></br>
           <div style={div_style2}>
-          <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted}  />
-          <ContributionChart data={chartData}/>
+            <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted}  />
+            <ContributionChart data={chartData}/>
           </div>
 
 
