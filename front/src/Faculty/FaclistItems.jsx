@@ -54,13 +54,13 @@ export const mainListItems = (
       <ListItemText primary="Update project" />
     </ListItem>
     
-    <ListItem button component={Link} to="/facultyprofilepage">
+    {/* <ListItem button component={Link} to="/facultyprofilepage">
       <ListItemIcon>
-        {/* <LayersIcon /> */}
+        <LayersIcon />
         <AccountCircleIcon/>
       </ListItemIcon>
       <ListItemText primary="Profile" />
-    </ListItem>
+    </ListItem> */}
 
     <ListItem button component={Link} to="/facultyfeedback">
       <ListItemIcon>

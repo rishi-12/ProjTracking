@@ -32,6 +32,7 @@ import {UserContext} from '../UserContext';
 import ParticlesBg from 'particles-bg'
 import Settings from './Settings';
 import Files from './Files';
+import Feedback from './Feedback';
 
 // import Form from './Form.jsx';
 function Copyright() {
@@ -214,6 +215,7 @@ export default function DashboardSkel(props) {
             {props.name==="project" && <Project /> }
             {props.name==="settings" && <Settings /> }
             {props.name==="files" && <Files /> }
+            {props.name==="feedback" && <Feedback /> }
             {/* {props.name==="form" && <Form /> } */}
       </main>
 

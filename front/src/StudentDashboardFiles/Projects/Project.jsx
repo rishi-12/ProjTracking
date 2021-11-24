@@ -14,7 +14,7 @@ import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import { Chart } from "react-google-charts";
 import { useHistory } from "react-router-dom"; 
-
+import FeedbackIcon from '@material-ui/icons/Feedback';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import ProjCard from "./Projects/ProjCard";
@@ -215,6 +215,11 @@ export default function Project() {
     history.push(`files/`+projectId);   
   }
 
+  function handlefeedback(){
+    history.push(``);
+    history.push(`feedback/`+projectId);   
+  }
+
 return(
         <Container maxWidth="lg" className={classes.container}>
 
@@ -233,6 +238,20 @@ return(
             onClick = {handlefiles}
           >
             View Files 
+          </Button>
+          </Box>
+
+          <br></br><br></br>
+          <Box textAlign='right'>
+          <Button
+            variant="contained"
+            color="primary"
+            // className={classes.button}
+            startIcon={<FeedbackIcon />}
+            style = {{marginTop:'-15%'}}
+            onClick = {handlefeedback}
+          >
+            View Feedback 
           </Button>
           </Box>
 

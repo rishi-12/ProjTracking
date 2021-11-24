@@ -44,12 +44,13 @@ export const mainListItems = (
       <ListItemText primary="Settings" />
     </ListItem>
     
-    <ListItem button>
+    {/* <ListItem button>
       <ListItemIcon>
-        {/* <LayersIcon /> */}
+        <LayersIcon />
         <AccountCircleIcon/>
       </ListItemIcon>
       <ListItemText primary="Profile" />
-    </ListItem>
+    </ListItem> */}
+
   </div>
 );

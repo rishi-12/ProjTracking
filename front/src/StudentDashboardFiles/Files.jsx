@@ -21,6 +21,7 @@ import TableRow from '@material-ui/core/TableRow';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import Link from '@material-ui/core/Link';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const paperStyle={padding :2,paddingTop :1,paddingBottom :1,height:'0%',width:'50%',margin:"0px auto",}
 
@@ -115,6 +116,20 @@ export default function Files(props) {
 	};
 
 
+
+  const handleDelete= (file_id) => {
+
+    console.log('dzcdsfdsfdsfsdfsddf');
+    axios.post("http://localhost:8080/mavenproject2/Filedel",file_id)
+    .catch(function (error) {
+        console.log(error);
+    }) 
+    .then((response) => {
+        console.log(response);
+        window.location.reload(false);
+      })
+    }
+
   useEffect(() => {
     Fetchdata();
 }, []);
@@ -182,7 +197,7 @@ export default function Files(props) {
                       <TableCell align="center">
                           <Button
                             variant="contained"
-                            color="secondary"
+                            color="primary"
                             className={classes.button}
                             startIcon={<CloudDownloadIcon />}
                             component={Link} 
@@ -190,6 +205,15 @@ export default function Files(props) {
                             target="_blank"
                             style={download_style}
                             // to = 
+                          ></Button>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            className={classes.button}
+                            startIcon={<DeleteIcon />}
+                            component={Link} 
+                            style={download_style}
+                            onClick={() => handleDelete(file.id)}
                           ></Button>
                       </TableCell>
                     </TableRow>

@@ -49,6 +49,7 @@ function App() {
         <Route path='/projects' exact component={()=>(<DashboardSkel name="projectlist"/>)} />
         <Route path='/projects/:projectId' exact component={()=>(<DashboardSkel name="project"/>)} />
         <Route path='/files/:projectId'  exact component={()=>(<DashboardSkel name="files"/>)} />
+        <Route path='/feedback/:projectId'  exact component={()=>(<DashboardSkel name="feedback"/>)} />
 
         {/* <Route path='/fdashboard'  exact component={()=>(<FacDashboardSkel name="dashboard"/>)} />
         <Route path='/fprojects' exact component={()=>(<FacDashboardSkel name="projectlist"/>)} />
