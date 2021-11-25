@@ -33,6 +33,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ContributionChart from './ContributionChart';
 const paperStyle={padding :2,paddingTop :1,paddingBottom :1,height:'0%',width:'50%',margin:"-10px auto",}
 
 const useStyles = makeStyles((theme) => ({
@@ -74,6 +75,9 @@ export default function FacProject() {
 
   const [open, setOpen] = React.useState(false);
 
+
+  const [chartData,setChartData]=useState([]);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -87,7 +91,6 @@ export default function FacProject() {
   // }
 
   
-  //Fetching Data for Pie Chart
   const PieChartData = () => {
     axios.post("http://localhost:8080/mavenproject2/PieChartData", projectId
     ).catch(function (error) {
@@ -99,7 +102,6 @@ export default function FacProject() {
         setCompletedCount(response.data.comp_count)
   });
 }
-
 
 
 //Fetching Project Details
@@ -114,10 +116,25 @@ axios.post("http://localhost:8080/mavenproject2/Project", projectId
   setProjDetail(response.data);
 });
 }
+ //Fetching Contribution bar chart data
+
+ const getContributionChartData = () =>{
+  axios.post("http://localhost:8080/mavenproject2/getContributionChartData", projectId
+    ).catch(function (error) {
+
+    console.log("error");
+  
+    }) 
+    .then((response) => {
+    setChartData(response.data);
+  });
+
+}
 
 useEffect(() => {
   Fetchdata();
   PieChartData();
+  getContributionChartData();
 }, [])
 
 //Add Student Function
@@ -157,7 +174,8 @@ return(
           </Paper>
           <br></br>
           <div style={div_style2}>
-          <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted} />
+            <PieChart c1={cTodo} c2={cInProgress} c3={cCompleted}  />
+            <ContributionChart data={chartData}/>
           </div>
 
           <br></br>

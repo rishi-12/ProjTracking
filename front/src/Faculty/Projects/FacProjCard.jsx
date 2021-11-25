@@ -38,6 +38,11 @@ export default function FacProjCard(props) {
           {/* be{bull}nev{bull}o{bull}lent */}
           {props.name}
         </Typography>
+        <Typography variant="body2" component="p">
+          {/* be{bull}nev{bull}o{bull}lent */}
+          Project ID:
+          {props.id}
+        </Typography>
         {/* <Typography className={classes.pos} color="textSecondary">
           {props.faculty}
         </Typography> */}

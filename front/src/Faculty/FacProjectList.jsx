@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import ProjCard from "./Projects/FacProjCard";
+import FacProjCard from "./Projects/FacProjCard";
 import axios from "axios";
 
 
@@ -56,7 +56,7 @@ export default function ProjectList(props) {
           <Grid container spacing={2} >
           {projs && projs.map((proj)=>(
           <Grid item xs={3}>
-              <ProjCard id= {proj.id} name={proj.name}  teamsize={proj.teamsize} />
+              <FacProjCard id= {proj.id} name={proj.name}  teamsize={proj.teamsize} />
               </Grid> 
             ))}
           </Grid>           

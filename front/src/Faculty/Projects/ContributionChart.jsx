@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { Animation } from '@devexpress/dx-react-chart';
 
 import { Chart } from "react-google-charts";
-import ContributionChart from './ContributionChart';
+
 
 const chart_style = {
   height: '50%',
